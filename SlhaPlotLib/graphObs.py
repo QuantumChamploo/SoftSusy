@@ -1,5 +1,6 @@
 import pyslha
 import os
+import matplotlib.pyplot as plt
 
 path = os.getcwd()
 
@@ -13,6 +14,7 @@ path = os.getcwd()
 # when parsing data
 
 cluster_thresh = 100
+shift = .1
 #pdg codes for various particles, grouped as they will be for the graph
 higgs = [24, 25, 35, 36, 37]
 sleptons = [1000011, 1000013, 1000015, 2000011, 2000013, 2000015, 1000012,
@@ -21,6 +23,18 @@ squarks = [1000001, 1000003, 1000005, 2000001, 2000003, 2000005,
 1000002, 1000004, 1000006, 2000002, 2000004, 2000006]
 gauginos = [1000021, 1000022, 1000023, 1000024, 1000025, 1000035,
 1000037, 1000039]
+
+higgs_anno = {24:"MW", 25:"h0", 35:"H0", 36:"A0", 37:"H+"}
+slepton_anno = {1000011:"~e_1", 1000013:"~e_2", 1000015:"~e_3", 2000011:"~e_4", 2000013:"~e_5", 2000015:"~e_6", 1000012:"~nu_1",
+1000014:"~nu_2", 1000016:"~nu_3"}
+squark_anno = {1000001:"~d_1", 1000003:"~d_2", 1000005:"~d_3", 2000001:"~d_4", 2000003:"~d_5", 2000005:"~d_6",
+1000002:"~u_1", 1000004:"~u_2", 1000006:"~u_3", 2000002:"~u_4", 2000004:"~u_5", 2000006:"~u_6"}
+gaugino_anno = {1000021:"~g", 1000022:"~n1", 1000023:"~n2", 1000024:"~c1", 1000025:"~n3", 1000035:"~n4",
+1000037:"~c2", 1000039:"~gr"}
+
+cat_dict = {"higgs":higgs_anno,"slepton":slepton_anno,"squark":squark_anno,"gaugino":gaugino_anno}
+
+# initial cluster function, used just on array objects and not the class ones
 def clusterFunc(sort_arr,full_arr):
 	hld = []
 	i = 0
@@ -42,35 +56,121 @@ def clusterFunc(sort_arr,full_arr):
 
 	return hld 
 
+# cleaner implementation of cluster function 
+def clusterFunc2(group):
+	hld = []
+	i = 0
+	res = [k.mass for k in group]
+	diff = [abs(i-j) for i, j in zip(res[1:],res[:-1])]
+	while((i < len(group))):
+		hld2 = [group[i]]
+
+		while((i < len(diff))):
+			if(diff[i] <= cluster_thresh):
+				i+=1
+				hld2.append(group[i])
+			else:
+				i+=1
+				hld.append(hld2)
+				break
+		if(i == len(diff)):
+			hld.append(hld2)
+			break
+	return hld
+# helper function to fix points returns labels for annotation
+def fitcluster(clusters):
+	for cluster in clusters:
+		results = ""
+		size = len(cluster)
+		start = float(-1*(size - 1)/2*shift)
+		cat = cat_dict[cluster[0].cat]
+] 
+		for part in cluster:
+
+			results += cat[part.pdg]
+			results += " "
+			part.delta = start
+			start += shift
+def fixX(group):
+	for part in group:
+		part.x = part.x + part.delta
+
 
 class Graph:
 	def __init__(self, file):
 		self.file = pyslha.read(path + "/" + file)
 		self.masses = self.file.blocks['MASS'].items()
-		self.higgs = [i for i in self.masses if i[0] in higgs]
-		self.sleptons = [i for i in self.masses if i[0] in sleptons]
-		self.squarks = [i for i in self.masses if i[0] in squarks]
-		self.gauginos = [i for i in self.masses if i[0] in gauginos]
+		self.higgs = [Particle(i[0],i[1]) for i in self.masses if i[0] in higgs]
+		self.sleptons = [Particle(i[0],i[1]) for i in self.masses if i[0] in sleptons]
+		self.squarks = [Particle(i[0],i[1]) for i in self.masses if i[0] in squarks]
+		self.gauginos = [Particle(i[0],i[1]) for i in self.masses if i[0] in gauginos]
 
 	def orgCats(self):
-		hld_higgs = []
-		higgs_deltas = [abs(j-i) for i,j in zip]
+		fitcluster(clusterFunc2(self.higgs))
+		fitcluster(clusterFunc2(self.sleptons))
+		fitcluster(clusterFunc2(self.squarks))
+		fitcluster(clusterFunc2(self.gauginos))
+		fixX(self.higgs)
+		fixX(self.sleptons)
+		fixX(self.squarks)
+		fixX(self.gauginos)
+
+	def plotSimple(self):
+		self.orgCats()
+		x1 = [i.x for i in self.higgs]
+		y1 = [i.mass for i in self.higgs]
+
+		x2 = [i.x for i in self.sleptons]
+		y2 = [i.mass for i in self.sleptons]
+
+		x3 = [i.x for i in self.squarks]
+		y3 = [i.mass for i in self.squarks]
+
+		x4 = [i.x for i in self.gauginos]
+		y4 = [i.mass for i in self.gauginos]
+
+		xs = x1 + x2 + x3 + x4
+		ys = y1 + y2 + y3 + y4
+
+		plt.scatter(xs,ys)
+
+		for x,y in zip(xs,ys):
+
+		    label = "{:.2f}".format(y)
+
+		    plt.annotate(label, # this is the text
+		                 (x,y), # this is the point to label
+		                 textcoords="offset points", # how to position the text
+		                 xytext=(5,0), # distance from text to points (x,y)
+		                 ha='left') # horizontal alignment can be left, right or center
+
+
+		plt.xlim(0,5)
+		plt.xticks([1,2,3,4])
+		plt.axes().set_xticklabels(['higgs', 'sleptons', 'gauginos', 'squarks'])
+
+		plt.show()
 
 class Particle:
 	def __init__(self,pdg,mass):
 		self.pdg = pdg
 		self.mass = mass
 		self.delta = 0
-		if(self.pdg in higgs):
-			self.cat = higgs
-		if(self.pdg in sleptons):
-			self.cat = slepton
-		if(self.pdg in squarks):
-			self.cat = squark
-		if(self.pdg in gauginos):
-			self.cat = gaugino
+
+		if (int(pdg) in higgs):
+			self.cat = "higgs"
+			self.x = 1
+		elif (int(pdg) in sleptons):
+			self.cat = "slepton"
+			self.x = 2
+		elif (int(pdg) in squarks):
+			self.cat = "squark"
+			self.x = 4
+		elif (int(pdg) in gauginos):
+			self.cat = "gaugino"
+			self.x = 3
 		else:
-			self.cat = Na
+			self.cat = "Na"
 			print ("created a particle of unknown type")
 
 
