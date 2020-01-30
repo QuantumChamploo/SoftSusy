@@ -1,7 +1,7 @@
 from graphObs import *
 d = Graph("test.slha")
 
-slep = d.sleptons
+slep = d.gauginos
 
 
 print (slep)
