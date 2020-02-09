@@ -1,6 +1,7 @@
 import pyslha
 import os
 import matplotlib.pyplot as plt
+import numpy as np
 
 path = os.getcwd()
 
@@ -13,7 +14,7 @@ path = os.getcwd()
 # Graph class wrapper around the slha file to be used
 # when parsing data
 
-cluster_thresh = 300
+cluster_thresh = 800
 shift = .1
 #pdg codes for various particles, grouped as they will be for the graph
 higgs = [24, 25, 35, 36, 37]
@@ -24,13 +25,13 @@ squarks = [1000001, 1000003, 1000005, 2000001, 2000003, 2000005,
 gauginos = [1000021, 1000022, 1000023, 1000024, 1000025, 1000035,
 1000037, 1000039]
 
-higgs_anno = {24:"MW", 25:"h0", 35:"H0", 36:"A0", 37:"H+"}
-slepton_anno = {1000011:"~e_1", 1000013:"~e_2", 1000015:"~e_3", 2000011:"~e_4", 2000013:"~e_5", 2000015:"~e_6", 1000012:"~nu_1",
-1000014:"~nu_2", 1000016:"~nu_3"}
-squark_anno = {1000001:"~d_1", 1000003:"~d_2", 1000005:"~d_3", 2000001:"~d_4", 2000003:"~d_5", 2000005:"~d_6",
-1000002:"~u_1", 1000004:"~u_2", 1000006:"~u_3", 2000002:"~u_4", 2000004:"~u_5", 2000006:"~u_6"}
-gaugino_anno = {1000021:"~g", 1000022:"~n1", 1000023:"~n2", 1000024:"~c1", 1000025:"~n3", 1000035:"~n4",
-1000037:"~c2", 1000039:"~gr"}
+higgs_anno = {24:"MW", 25:r"$h^0$", 35:r"$H^0$", 36:r"$A^0$", 37:r"$H^\pm$"}
+slepton_anno = {1000011:r"$\widetilde{e}_{1}$", 1000013:r"$\widetilde{e}_{2}$", 1000015:r"$\widetilde{e}_{3}$", 2000011:r"$\widetilde{e}_{4}$", 2000013:r"$\widetilde{e}_{5}$", 2000015:r"$\widetilde{e}_{6}$", 1000012:r"$\widetilde{v}_{1}$",
+1000014:r"$\widetilde{v}_{2}$", 1000016:r"$\widetilde{v}_{3}$"}
+squark_anno = {1000001:r"$\widetilde{d}_{1}$", 1000003:r"$\widetilde{d}_{2}$", 1000005:r"$\widetilde{d}_{3}$", 2000001:r"$\widetilde{d}_{4}$", 2000003:r"$\widetilde{d}_{5}$", 2000005:r"$\widetilde{d}_{6}$",
+1000002:r"$\widetilde{u}_{1}$", 1000004:r"$\widetilde{u}_{2}$", 1000006:r"$\widetilde{u}_{3}$", 2000002:r"$\widetilde{u}_{4}$", 2000004:r"$\widetilde{u}_{5}$", 2000006:r"$\widetilde{u}_{6}$"}
+gaugino_anno = {1000021:r"$\widetilde{g}$", 1000022:r"$\widetilde{X}^0_1$", 1000023:r"$\widetilde{X}^0_2$", 1000024:r"$\widetilde{X}^\pm_1$", 1000025:r"$\widetilde{X}^0_3$", 1000035:r"$\widetilde{X}^0_4$",
+1000037:r"$\widetilde{X}^\pm_2$", 1000039:r"$\widetilde{gr}$"}
 
 cat_dict = {"higgs":higgs_anno,"slepton":slepton_anno,"squark":squark_anno,"gaugino":gaugino_anno}
 
@@ -74,10 +75,45 @@ def clusterFunc2(group):
 				hld.append(hld2)
 				break
 		if(i == len(diff)):
-			print(group[i].pdg)
+
 			hld.append(hld2)
 			i+=1
+
 	return hld
+
+def clusterFunc3(group):
+	hld = []
+	hs = []
+	hss = []
+	for i in group:
+		hld.append(i.mass)
+	diff = np.diff(hld)
+	lss = []
+	ls = []
+	ls.append(group[0])
+	hs.append(group[0].mass)
+	for i, d in enumerate(diff):
+		if d < cluster_thresh:
+			ls.append(group[i+1])
+			hs.append(group[i+1].mass)
+			if(i == len(hld) - 2):
+				lss.append(ls)
+				hss.append(hs)
+		else:
+			lss.append(ls)
+			hss.append(hs)
+			ls = []
+			hs = []
+			ls.append(group[i+1])
+			hs.append(group[i+1].mass)
+			if(i == len(hld) - 2):
+				lss.append(ls)
+				hss.append(hs)
+
+
+	return lss
+
+	
 # helper function to fix points returns labels for annotation
 def fitcluster(clusters):
 	anno = []
@@ -94,8 +130,8 @@ def fitcluster(clusters):
 				parts.append(part)
 
 			result_string += cat[part.pdg]
-			if(part.pdg == 1000039):
-				print ("look here!!!!")
+
+
 
 			#print(part.pdg)
 			result_string += " "
@@ -119,14 +155,24 @@ class Graph:
 		self.squarks = [Particle(i[0],i[1]) for i in self.masses if i[0] in squarks]
 		self.gauginos = [Particle(i[0],i[1]) for i in self.masses if i[0] in gauginos]
 
+		self.sleptons.sort(key=lambda x: x.mass)
+		self.squarks.sort(key=lambda x: x.mass)
+		self.gauginos.sort(key=lambda x: x.mass)
+		self.higgs.sort(key=lambda x: x.mass)
+
 	def orgCats(self):
+
+
+
 		annotations = []
 		annotated_particles = []
 
-		higgs_annos = fitcluster(clusterFunc2(self.higgs))
-		slepton_annos = fitcluster(clusterFunc2(self.sleptons))
-		squark_annos = fitcluster(clusterFunc2(self.squarks))
-		gaugino_annos = fitcluster(clusterFunc2(self.gauginos))
+		higgs_annos = fitcluster(clusterFunc3(self.higgs))
+		slepton_annos = fitcluster(clusterFunc3(self.sleptons))
+		squark_annos = fitcluster(clusterFunc3(self.squarks))
+		gaugino_annos = fitcluster(clusterFunc3(self.gauginos))
+
+		
 		annotations.append(higgs_annos[1])
 		annotations.append(slepton_annos[1])
 		annotations.append(squark_annos[1])
@@ -136,15 +182,18 @@ class Graph:
 		annotated_particles.append(squark_annos[0])
 		annotated_particles.append(gaugino_annos[0])
 
-		print(gaugino_annos)
+
 		fixX(self.higgs)
 		fixX(self.sleptons)
 		fixX(self.squarks)
 		fixX(self.gauginos)
 		return annotations, annotated_particles
 
-	def plotSimple(self):
-		annotations, annotated_particles = self.orgCats()
+
+	def plot(self,includes=['sleptons','higgs','gauginos','squarks']):
+		print(includes)
+		annotations, annotated_particles = self.orgCats(includes)
+
 		x1 = [i.x for i in self.higgs]
 		y1 = [i.mass for i in self.higgs]
 
@@ -160,7 +209,9 @@ class Graph:
 		xs = x1 + x2 + x3 + x4
 		ys = y1 + y2 + y3 + y4
 
-		plt.scatter(xs,ys)
+		colors = [int((i)*100/len(xs)) for i in range(len(xs))]
+
+		plt.scatter(xs,ys,c=colors, cmap='hsv')
 
 
 
@@ -183,10 +234,71 @@ class Graph:
 
 
 		plt.xlim(0,5)
+
+		#plt.semilogy()
+		plt.grid(alpha=.5,linestyle="--")
+		plt.ylabel("Mass - GeV")
+
 		plt.xticks([1,2,3,4])
 		plt.axes().set_xticklabels(['higgs', 'sleptons', 'gauginos', 'squarks'])
 
-		plt.show()
+		#plt.show()
+
+	def plotBar(self):
+		return 
+
+
+	def plotSimple(self):
+		annotations, annotated_particles = self.orgCats()
+		x1 = [i.x for i in self.higgs]
+		y1 = [i.mass for i in self.higgs]
+
+		x2 = [i.x for i in self.sleptons]
+		y2 = [i.mass for i in self.sleptons]
+
+		x3 = [i.x for i in self.squarks]
+		y3 = [i.mass for i in self.squarks]
+
+		x4 = [i.x for i in self.gauginos]
+		y4 = [i.mass for i in self.gauginos]
+
+		xs = x1 + x2 + x3 + x4
+		ys = y1 + y2 + y3 + y4
+
+		colors = [int((i)*100/len(xs)) for i in range(len(xs))]
+
+		plt.scatter(xs,ys,c=colors, cmap='hsv')
+
+
+
+
+		for x,y in zip(annotations,annotated_particles):
+			for i in range(len(x)):
+
+				plt.annotate(x[i],
+						xy=(y[i].x,y[i].mass+300),
+						ha="center",
+						fontsize=8)
+
+		    #label = "{:.2f}".format(y)
+
+		    #plt.annotate(label, # this is the text
+		                 #(x,y), # this is the point to label
+		                 #textcoords="offset points", # how to position the text
+		                 #xytext=(5,0), # distance from text to points (x,y)
+		                # ha='left') # horizontal alignment can be left, right or center
+
+
+		plt.xlim(0,5)
+
+		#plt.semilogy()
+		plt.grid(alpha=.5,linestyle="--")
+		plt.ylabel("Mass - GeV")
+
+		plt.xticks([1,2,3,4])
+		plt.axes().set_xticklabels(['higgs', 'sleptons', 'gauginos', 'squarks'])
+
+		#plt.show()
 
 class Particle:
 	def __init__(self,pdg,mass):

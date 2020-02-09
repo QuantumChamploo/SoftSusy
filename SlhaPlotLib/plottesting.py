@@ -26,4 +26,5 @@ plt.xlim(0,5)
 plt.xticks([1,2,3,4])
 plt.axes().set_xticklabels(['higgs', 'sleptons', 'gauginos', 'squarks'])
 
+
 plt.show()
