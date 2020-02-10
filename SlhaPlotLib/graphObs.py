@@ -98,16 +98,16 @@ def fitcluster(clusters):
 		anno.append(result_string)
 
 	return parts, anno 
-def fixX(group):
-	for part in group:
-		part.x = part.x + part.delta
+
 
 
 class Graph:
-	def __init__(self, file):
+	def __init__(self, file,excluded=[]):
+		print("excluded is")
+		print(excluded)
 		self.file = pyslha.read(path + "/" + file)
 		self.masses = self.file.blocks['MASS'].items()
-		self.higgs = [Particle(i[0],i[1]) for i in self.masses if i[0] in higgs]
+		self.higgs = [Particle(i[0],i[1]) for i in self.masses if i[0] in higgs if i[0] not in excluded]
 		self.sleptons = [Particle(i[0],i[1]) for i in self.masses if i[0] in sleptons]
 		self.squarks = [Particle(i[0],i[1]) for i in self.masses if i[0] in squarks]
 		self.gauginos = [Particle(i[0],i[1]) for i in self.masses if i[0] in gauginos]
@@ -185,13 +185,18 @@ class Graph:
 		#annotated_particles.append(gaugino_annos[0])
 
 
-		fixX(self.higgs)
-		fixX(self.sleptons)
-		fixX(self.squarks)
-		fixX(self.gauginos)
+		self.fixX()
 		return annotations, annotated_particles
 
-
+	def fixX(self):
+		for part in self.higgs:
+			part.x = part.x + part.delta
+		for part in self.sleptons:
+			part.x = part.x + part.delta
+		for part in self.squarks:
+			part.x = part.x + part.delta
+		for part in self.gauginos:
+			part.x = part.x + part.delta
 	def plot(self,includes=['sleptons','higgs','gauginos','squarks']):
 		print(includes)
 		annotations, annotated_particles = self.orgCats(includes)
@@ -314,6 +319,8 @@ class Particle:
 		self.pdg = pdg
 		self.mass = mass
 		self.delta = 0
+		if(pdg == 25):
+			print('list comprehension doesnt work')
 
 		if (int(pdg) in higgs):
 			self.cat = "higgs"

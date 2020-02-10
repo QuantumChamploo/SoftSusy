@@ -1,6 +1,6 @@
 from graphObs import *
 
-d = Graph("test.slha")
+d = Graph("test.slha",[25])
 
 d.plot()
 
