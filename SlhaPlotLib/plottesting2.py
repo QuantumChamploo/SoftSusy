@@ -2,7 +2,7 @@ from graphObs import *
 
 d = Graph("test.slha")
 
-d.plotSimple()
+d.plot()
 
 plt.ylim(-500,11000)
 

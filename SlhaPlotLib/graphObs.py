@@ -35,52 +35,9 @@ gaugino_anno = {1000021:r"$\widetilde{g}$", 1000022:r"$\widetilde{X}^0_1$", 1000
 
 cat_dict = {"higgs":higgs_anno,"slepton":slepton_anno,"squark":squark_anno,"gaugino":gaugino_anno}
 
-# initial cluster function, used just on array objects and not the class ones
-def clusterFunc(sort_arr,full_arr):
-	hld = []
-	i = 0
-	while (i < len(full_arr)):
-		
-		hld2 = [full_arr[i]]
-		
-		while ((i<len(sort_arr))):
-			if(sort_arr[i]<=cluster_thresh):
-				i+=1
-				hld2.append(full_arr[i])
-			else:
-				i+=1
-				hld.append(hld2)
-				break
-		if(i == len(sort_arr)):
-			hld.append(hld2)
-			break 
 
-	return hld 
-
-# cleaner implementation of cluster function 
-def clusterFunc2(group):
-	hld = []
-	i = 0
-	res = [k.mass for k in group]
-	diff = [abs(i-j) for i, j in zip(res[1:],res[:-1])]
-	while((i < len(group))):
-		hld2 = [group[i]]
-
-		while((i < len(diff))):
-			if(diff[i] <= cluster_thresh):
-				i+=1
-				hld2.append(group[i])
-			else:
-				i+=1
-				hld.append(hld2)
-				break
-		if(i == len(diff)):
-
-			hld.append(hld2)
-			i+=1
-
-	return hld
-
+# mask these groups by an excludes list to have the function to get 
+# rid of particles by the users control in a simple way
 def clusterFunc3(group):
 	hld = []
 	hs = []
@@ -159,28 +116,73 @@ class Graph:
 		self.squarks.sort(key=lambda x: x.mass)
 		self.gauginos.sort(key=lambda x: x.mass)
 		self.higgs.sort(key=lambda x: x.mass)
+		self.ticklabels = []
 
-	def orgCats(self):
-
-
-
+	def orgCats(self,includes):
+		i = 0
 		annotations = []
 		annotated_particles = []
 
-		higgs_annos = fitcluster(clusterFunc3(self.higgs))
-		slepton_annos = fitcluster(clusterFunc3(self.sleptons))
-		squark_annos = fitcluster(clusterFunc3(self.squarks))
-		gaugino_annos = fitcluster(clusterFunc3(self.gauginos))
+		if('higgs' in includes):
+			i+=1
+			higgs_annos = fitcluster(clusterFunc3(self.higgs))
+			annotations.append(higgs_annos[1])
+			annotated_particles.append(higgs_annos[0])
+			self.ticklabels.append('higgs')
+			for j in self.higgs:
+				j.x = i
+		else:
+			self.higgs = []
+		if('sleptons' in includes):
+			i+=1
+			slepton_annos = fitcluster(clusterFunc3(self.sleptons))
+			annotations.append(slepton_annos[1])
+			annotated_particles.append(slepton_annos[0])
+			self.ticklabels.append('sleptons')
+			for j in self.sleptons:
+				j.x = i
+		else:
+			self.sleptons = []
+		if('gauginos' in includes):
+			i+=1
+			gaugino_annos = fitcluster(clusterFunc3(self.gauginos))
+			annotations.append(gaugino_annos[1])
+			annotated_particles.append(gaugino_annos[0])
+			self.ticklabels.append('gauginos')
+			for j in self.gauginos:
+				j.x = i
+		else:
+			self.gauginos = []
+
+		if('squarks' in includes):
+			i+=1
+			squark_annos = fitcluster(clusterFunc3(self.squarks))
+			annotations.append(squark_annos[1])
+			annotated_particles.append(squark_annos[0])
+			self.ticklabels.append('squarks')
+			for j in self.squarks:
+				j.x = i
+		else:
+			self.squarks = []
+
+
+		#annotations = []
+		#annotated_particles = []
+
+		#higgs_annos = fitcluster(clusterFunc3(self.higgs))
+		#slepton_annos = fitcluster(clusterFunc3(self.sleptons))
+		#squark_annos = fitcluster(clusterFunc3(self.squarks))
+		#gaugino_annos = fitcluster(clusterFunc3(self.gauginos))
 
 		
-		annotations.append(higgs_annos[1])
-		annotations.append(slepton_annos[1])
-		annotations.append(squark_annos[1])
-		annotations.append(gaugino_annos[1])
-		annotated_particles.append(higgs_annos[0])
-		annotated_particles.append(slepton_annos[0])
-		annotated_particles.append(squark_annos[0])
-		annotated_particles.append(gaugino_annos[0])
+		#annotations.append(higgs_annos[1])
+		#annotations.append(slepton_annos[1])
+		#annotations.append(squark_annos[1])
+		#annotations.append(gaugino_annos[1])
+		#annotated_particles.append(higgs_annos[0])
+		#annotated_particles.append(slepton_annos[0])
+		#annotated_particles.append(squark_annos[0])
+		#annotated_particles.append(gaugino_annos[0])
 
 
 		fixX(self.higgs)
@@ -233,14 +235,21 @@ class Graph:
 		                # ha='left') # horizontal alignment can be left, right or center
 
 
-		plt.xlim(0,5)
+		plt.xlim(0,len(includes)+1)
 
 		#plt.semilogy()
 		plt.grid(alpha=.5,linestyle="--")
 		plt.ylabel("Mass - GeV")
 
-		plt.xticks([1,2,3,4])
-		plt.axes().set_xticklabels(['higgs', 'sleptons', 'gauginos', 'squarks'])
+		i = 0
+		ticks = [i+1 for i in range(len(includes))]
+		
+
+		plt.xticks(ticks)
+		plt.axes().set_xticklabels(self.ticklabels)
+
+		#plt.xticks([1,2,3,4])
+		#plt.axes().set_xticklabels(['higgs', 'sleptons', 'gauginos', 'squarks'])
 
 		#plt.show()
 
@@ -248,7 +257,7 @@ class Graph:
 		return 
 
 
-	def plotSimple(self):
+	def plotSimple(self,includes=['sleptons','higgs','gauginos','squarks']):
 		annotations, annotated_particles = self.orgCats()
 		x1 = [i.x for i in self.higgs]
 		y1 = [i.mass for i in self.higgs]
@@ -308,16 +317,16 @@ class Particle:
 
 		if (int(pdg) in higgs):
 			self.cat = "higgs"
-			self.x = 1
+			#self.x = 1
 		elif (int(pdg) in sleptons):
 			self.cat = "slepton"
-			self.x = 2
+			#self.x = 2
 		elif (int(pdg) in squarks):
 			self.cat = "squark"
-			self.x = 4
+			#self.x = 4
 		elif (int(pdg) in gauginos):
 			self.cat = "gaugino"
-			self.x = 3
+			#self.x = 3
 		else:
 			self.cat = "Na"
 			print ("created a particle of unknown type")
