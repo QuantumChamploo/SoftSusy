@@ -1,6 +1,7 @@
 import pyslha
 import os
 import matplotlib.pyplot as plt
+import matplotlib.colors as mcolors
 import numpy as np
 
 path = os.getcwd()
@@ -21,7 +22,7 @@ higgs = [24, 25, 35, 36, 37]
 sleptons = [1000011, 1000013, 1000015, 2000011, 2000013, 2000015, 1000012,
 1000014, 1000016]
 squarks = [1000001, 1000003, 1000005, 2000001, 2000003, 2000005,
-1000002, 1000004, 1000006, 2000002, 2000004, 2000006]
+1000002, 1000004, 1000006, 2000002, 2000004, 2000006,1000011]
 gauginos = [1000021, 1000022, 1000023, 1000024, 1000025, 1000035,
 1000037, 1000039]
 
@@ -29,7 +30,7 @@ higgs_anno = {24:"MW", 25:r"$h^0$", 35:r"$H^0$", 36:r"$A^0$", 37:r"$H^\pm$"}
 slepton_anno = {1000011:r"$\widetilde{e}_{1}$", 1000013:r"$\widetilde{e}_{2}$", 1000015:r"$\widetilde{e}_{3}$", 2000011:r"$\widetilde{e}_{4}$", 2000013:r"$\widetilde{e}_{5}$", 2000015:r"$\widetilde{e}_{6}$", 1000012:r"$\widetilde{v}_{1}$",
 1000014:r"$\widetilde{v}_{2}$", 1000016:r"$\widetilde{v}_{3}$"}
 squark_anno = {1000001:r"$\widetilde{d}_{1}$", 1000003:r"$\widetilde{d}_{2}$", 1000005:r"$\widetilde{d}_{3}$", 2000001:r"$\widetilde{d}_{4}$", 2000003:r"$\widetilde{d}_{5}$", 2000005:r"$\widetilde{d}_{6}$",
-1000002:r"$\widetilde{u}_{1}$", 1000004:r"$\widetilde{u}_{2}$", 1000006:r"$\widetilde{u}_{3}$", 2000002:r"$\widetilde{u}_{4}$", 2000004:r"$\widetilde{u}_{5}$", 2000006:r"$\widetilde{u}_{6}$"}
+1000002:r"$\widetilde{u}_{1}$", 1000004:r"$\widetilde{u}_{2}$", 1000006:r"$\widetilde{u}_{3}$", 2000002:r"$\widetilde{u}_{4}$", 2000004:r"$\widetilde{u}_{5}$", 2000006:r"$\widetilde{u}_{6}$",1000011:r"$\widetilde{e}_{L}$"}
 gaugino_anno = {1000021:r"$\widetilde{g}$", 1000022:r"$\widetilde{X}^0_1$", 1000023:r"$\widetilde{X}^0_2$", 1000024:r"$\widetilde{X}^\pm_1$", 1000025:r"$\widetilde{X}^0_3$", 1000035:r"$\widetilde{X}^0_4$",
 1000037:r"$\widetilde{X}^\pm_2$", 1000039:r"$\widetilde{gr}$"}
 
@@ -90,7 +91,7 @@ def fitcluster(clusters):
 
 
 
-			#print(part.pdg)
+
 			result_string += " "
 			part.delta = start
 			start += shift
@@ -102,21 +103,39 @@ def fitcluster(clusters):
 
 
 class Graph:
-	def __init__(self, file,excluded=[]):
-		print("excluded is")
-		print(excluded)
+	def __init__(self, file,excluded=[],keepNegs=False):
+
 		self.file = pyslha.read(path + "/" + file)
 		self.masses = self.file.blocks['MASS'].items()
 		self.higgs = [Particle(i[0],i[1]) for i in self.masses if i[0] in higgs if i[0] not in excluded]
-		self.sleptons = [Particle(i[0],i[1]) for i in self.masses if i[0] in sleptons]
-		self.squarks = [Particle(i[0],i[1]) for i in self.masses if i[0] in squarks]
-		self.gauginos = [Particle(i[0],i[1]) for i in self.masses if i[0] in gauginos]
+		self.sleptons = [Particle(i[0],i[1]) for i in self.masses if i[0] in sleptons if i[0] not in excluded]
+		self.squarks = [Particle(i[0],i[1]) for i in self.masses if i[0] in squarks if i[0] not in excluded]
+		self.gauginos = [Particle(i[0],i[1]) for i in self.masses if i[0] in gauginos if i[0] not in excluded]
+
+		if(keepNegs==False):
+			self.tossNegs()
 
 		self.sleptons.sort(key=lambda x: x.mass)
 		self.squarks.sort(key=lambda x: x.mass)
 		self.gauginos.sort(key=lambda x: x.mass)
 		self.higgs.sort(key=lambda x: x.mass)
 		self.ticklabels = []
+
+	def tossNegs(self):
+		print("in tossNegs")
+		for i in self.higgs:
+			if (i.mass < 0):
+				self.higgs.remove(i)
+		for i in self.sleptons:
+			if (i.mass < 0):
+				self.sleptons.remove(i)
+		for i in self.squarks:
+			if (i.mass < 0):
+				self.squarks.remove(i)
+		for i in self.gauginos:
+			if (i.mass < 0):
+				self.gauginos.remove(i)
+
 
 	def orgCats(self,includes):
 		i = 0
@@ -166,23 +185,6 @@ class Graph:
 			self.squarks = []
 
 
-		#annotations = []
-		#annotated_particles = []
-
-		#higgs_annos = fitcluster(clusterFunc3(self.higgs))
-		#slepton_annos = fitcluster(clusterFunc3(self.sleptons))
-		#squark_annos = fitcluster(clusterFunc3(self.squarks))
-		#gaugino_annos = fitcluster(clusterFunc3(self.gauginos))
-
-		
-		#annotations.append(higgs_annos[1])
-		#annotations.append(slepton_annos[1])
-		#annotations.append(squark_annos[1])
-		#annotations.append(gaugino_annos[1])
-		#annotated_particles.append(higgs_annos[0])
-		#annotated_particles.append(slepton_annos[0])
-		#annotated_particles.append(squark_annos[0])
-		#annotated_particles.append(gaugino_annos[0])
 
 
 		self.fixX()
@@ -198,7 +200,7 @@ class Graph:
 		for part in self.gauginos:
 			part.x = part.x + part.delta
 	def plot(self,includes=['sleptons','higgs','gauginos','squarks']):
-		print(includes)
+
 		annotations, annotated_particles = self.orgCats(includes)
 
 		x1 = [i.x for i in self.higgs]
@@ -259,6 +261,35 @@ class Graph:
 		#plt.show()
 
 	def plotBar(self):
+		x1 = [higgs_anno[i.pdg] for i in self.higgs]
+		y1 = [i.mass for i in self.higgs]
+
+		x2 = [slepton_anno[i.pdg] for i in self.sleptons]
+		y2 = [i.mass for i in self.sleptons]
+
+		x3 = [squark_anno[i.pdg] for i in self.squarks]
+		y3 = [i.mass for i in self.squarks]
+
+		x4 = [gaugino_anno[i.pdg] for i in self.gauginos]
+		y4 = [i.mass for i in self.gauginos]
+
+		xs = x1 + x2 + x3 + x4 
+		ys = y1 + y2 + y3 + y4
+
+		#xs = np.arange(len(ys))
+		clist = [(0, "red"), (0.125, "red"), (0.25, "orange"), (0.5, "green"), 
+         (0.7, "fuchsia"), (0.75, "darkorchid"), (1, "blue")]
+
+		clist2 =[(0,"chartreuse"),(.33,"aqua"),(.66,"magenta"),(1,"mediumpurple")]
+		rvb = mcolors.LinearSegmentedColormap.from_list("", clist2)
+
+		colors = [int((i)*100/len(xs)) for i in range(len(xs))]
+		color_arr = [float(x/len(xs)) for x in range(len(xs))]
+		color_arr = np.array(color_arr)
+		plt.bar(xs,ys,color=rvb(color_arr))
+		plt.xticks(rotation='vertical',fontsize=6)
+
+
 		return 
 
 
@@ -319,8 +350,7 @@ class Particle:
 		self.pdg = pdg
 		self.mass = mass
 		self.delta = 0
-		if(pdg == 25):
-			print('list comprehension doesnt work')
+
 
 		if (int(pdg) in higgs):
 			self.cat = "higgs"

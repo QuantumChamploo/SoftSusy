@@ -3240,7 +3240,7 @@ void MssmSoftPars::minimalGmsb(const MssmSusy & xx, int n5, double LAMBDA,
 
 void MssmSoftPars::FGMCaseB0(const MssmSusy & xx, double LAMBDA, 
 			       double mMess, double cgrav) {
-  
+  printf("inside");
   // Modified thresholds by JEL 1-26-04 to accomodate numerical infinities
   
   const double epstol = 1.0e-4;

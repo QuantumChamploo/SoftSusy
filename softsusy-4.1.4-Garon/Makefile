@@ -93,8 +93,8 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-build_triplet = x86_64-pc-linux-gnu
-host_triplet = x86_64-pc-linux-gnu
+build_triplet = x86_64-apple-darwin17.6.0
+host_triplet = x86_64-apple-darwin17.6.0
 bin_PROGRAMS = softsusy.x$(EXEEXT) softsusy-nmssm.x$(EXEEXT) \
 	softpoint.x$(EXEEXT) rpvsoftsusy.x$(EXEEXT) rpvneut.x$(EXEEXT) \
 	higher.x$(EXEEXT)
@@ -111,8 +111,8 @@ EXTRA_PROGRAMS = decay.x$(EXEEXT)
 #am__append_10 = $(himalayadir)/libHimalaya.a
 #am__append_11 = $(himalayadir)/libHimalaya.a
 #am__append_12 = -I$(himalayadir)/source/include
-am__append_13 = src/mssm_twoloop_mb.cpp src/mssm_twoloop_mt.cpp \
- src/mssm_twoloop_mtau.cpp src/mssm_twoloop_as.cpp
+#am__append_13 = src/mssm_twoloop_mb.cpp src/mssm_twoloop_mt.cpp \
+# src/mssm_twoloop_mtau.cpp src/mssm_twoloop_as.cpp
 
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -175,11 +175,11 @@ am__libsoft_la_SOURCES_DIST = src/decays.cpp src/twoBodyDecays.cpp \
 	src/mssm_twoloop_mb.cpp src/mssm_twoloop_mt.cpp \
 	src/mssm_twoloop_mtau.cpp src/mssm_twoloop_as.cpp
 am__dirstamp = $(am__leading_dot)dirstamp
-am__objects_1 =  \
-	src/mssm_twoloop_mb.lo \
-	src/mssm_twoloop_mt.lo \
-	src/mssm_twoloop_mtau.lo \
-	src/mssm_twoloop_as.lo
+#am__objects_1 =  \
+#	src/mssm_twoloop_mb.lo \
+#	src/mssm_twoloop_mt.lo \
+#	src/mssm_twoloop_mtau.lo \
+#	src/mssm_twoloop_as.lo
 am_libsoft_la_OBJECTS = src/decays.lo src/twoBodyDecays.lo \
 	src/threeBodyDecays.lo src/def.lo src/linalg.lo src/lowe.lo \
 	src/numerics.lo src/rpvneut.lo src/physpars.lo src/rge.lo \
@@ -410,17 +410,17 @@ distuninstallcheck_listfiles = find . -type f -print
 am__distuninstallcheck_listfiles = $(distuninstallcheck_listfiles) \
   | sed 's|^\./|$(prefix)/|' | grep -v '$(infodir)/dir$$'
 distcleancheck_listfiles = find . -type f -print
-ACLOCAL = ${SHELL} /afs/physics.wisc.edu/home/arock3/Research/FlavoredGMfiles/Todd/softsusy-4.1.4-Garon/Config/missing aclocal-1.15
+ACLOCAL = ${SHELL} /Users/neilleonard/Repos/SoftSuzy/softsusy-4.1.4-Garon/Config/missing aclocal-1.15
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
 AR = ar
-AUTOCONF = ${SHELL} /afs/physics.wisc.edu/home/arock3/Research/FlavoredGMfiles/Todd/softsusy-4.1.4-Garon/Config/missing autoconf
-AUTOHEADER = ${SHELL} /afs/physics.wisc.edu/home/arock3/Research/FlavoredGMfiles/Todd/softsusy-4.1.4-Garon/Config/missing autoheader
-AUTOMAKE = ${SHELL} /afs/physics.wisc.edu/home/arock3/Research/FlavoredGMfiles/Todd/softsusy-4.1.4-Garon/Config/missing automake-1.15
-AWK = gawk
+AUTOCONF = ${SHELL} /Users/neilleonard/Repos/SoftSuzy/softsusy-4.1.4-Garon/Config/missing autoconf
+AUTOHEADER = ${SHELL} /Users/neilleonard/Repos/SoftSuzy/softsusy-4.1.4-Garon/Config/missing autoheader
+AUTOMAKE = ${SHELL} /Users/neilleonard/Repos/SoftSuzy/softsusy-4.1.4-Garon/Config/missing automake-1.15
+AWK = awk
 CC = gcc
 CCDEPMODE = depmode=gcc3
-CFLAGS = -O2 -Wall
+CFLAGS = -O0 -Wall
 CPP = gcc -E
 CPPFLAGS =  $(am__append_12)
 CXX = g++
@@ -431,41 +431,41 @@ CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
 DLLTOOL = false
-DSYMUTIL = 
+DSYMUTIL = dsymutil
 DUMPBIN = 
-ECHO_C = 
-ECHO_N = -n
+ECHO_C = \c
+ECHO_N = 
 ECHO_T = 
-EGREP = /bin/grep -E
+EGREP = /usr/bin/grep -E
 EXEEXT = 
-F77 = f77
+F77 = gfortran
 FFLAGS = -O2 -Wall
-FGREP = /bin/grep -F
-FLIBS =  -L/usr/lib/gcc/x86_64-linux-gnu/6 -L/usr/lib/gcc/x86_64-linux-gnu/6/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/6/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/6/../../.. -lgfortran -lm -lquadmath
-GREP = /bin/grep
+FGREP = /usr/bin/grep -F
+FLIBS =  -L/usr/local/Cellar/gcc/9.2.0_1/lib/gcc/9/gcc/x86_64-apple-darwin17/9.2.0 -L/usr/local/Cellar/gcc/9.2.0_1/lib/gcc/9/gcc/x86_64-apple-darwin17/9.2.0/../../.. -lgfortran -lquadmath -lm
+GREP = /usr/bin/grep
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
-LD = /usr/bin/ld -m elf_x86_64
+LD = /Library/Developer/CommandLineTools/usr/bin/ld
 LDFLAGS = 
 LIBOBJS = 
 LIBS = 
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
-LIPO = 
+LIPO = lipo
 LN_S = ln -s
 LTLIBOBJS = 
 LT_SYS_LIBRARY_PATH = 
-MAKEINFO = ${SHELL} /afs/physics.wisc.edu/home/arock3/Research/FlavoredGMfiles/Todd/softsusy-4.1.4-Garon/Config/missing makeinfo
+MAKEINFO = ${SHELL} /Users/neilleonard/Repos/SoftSuzy/softsusy-4.1.4-Garon/Config/missing makeinfo
 MANIFEST_TOOL = :
-MKDIR_P = /bin/mkdir -p
+MKDIR_P = Config/install-sh -c -d
 NM = /usr/bin/nm -B
-NMEDIT = 
+NMEDIT = nmedit
 OBJDUMP = objdump
 OBJEXT = o
-OTOOL = 
-OTOOL64 = 
+OTOOL = otool
+OTOOL64 = :
 PACKAGE = softsusy
 PACKAGE_BUGREPORT = softsusy@projects.hepforge.org
 PACKAGE_NAME = softsusy
@@ -475,46 +475,46 @@ PACKAGE_URL = http://softsusy.hepforge.org/
 PACKAGE_VERSION = 4.1.4
 PATH_SEPARATOR = :
 RANLIB = ranlib
-SED = /bin/sed
+SED = /usr/bin/sed
 SET_MAKE = 
-SHELL = /bin/bash
+SHELL = /bin/sh
 STRIP = strip
 VERSION = 4.1.4
-abs_builddir = /afs/physics.wisc.edu/home/arock3/Research/FlavoredGMfiles/Todd/softsusy-4.1.4-Garon
-abs_srcdir = /afs/physics.wisc.edu/home/arock3/Research/FlavoredGMfiles/Todd/softsusy-4.1.4-Garon
-abs_top_builddir = /afs/physics.wisc.edu/home/arock3/Research/FlavoredGMfiles/Todd/softsusy-4.1.4-Garon
-abs_top_srcdir = /afs/physics.wisc.edu/home/arock3/Research/FlavoredGMfiles/Todd/softsusy-4.1.4-Garon
+abs_builddir = /Users/neilleonard/Repos/SoftSuzy/softsusy-4.1.4-Garon
+abs_srcdir = /Users/neilleonard/Repos/SoftSuzy/softsusy-4.1.4-Garon
+abs_top_builddir = /Users/neilleonard/Repos/SoftSuzy/softsusy-4.1.4-Garon
+abs_top_srcdir = /Users/neilleonard/Repos/SoftSuzy/softsusy-4.1.4-Garon
 ac_ct_AR = ar
 ac_ct_CC = gcc
 ac_ct_CXX = g++
 ac_ct_DUMPBIN = 
-ac_ct_F77 = f77
+ac_ct_F77 = 
 am__include = include
 am__leading_dot = .
 am__quote = 
 am__tar = $${TAR-tar} chof - "$$tardir"
 am__untar = $${TAR-tar} xf -
 bindir = ${exec_prefix}/bin
-build = x86_64-pc-linux-gnu
+build = x86_64-apple-darwin17.6.0
 build_alias = 
 build_cpu = x86_64
-build_os = linux-gnu
-build_vendor = pc
+build_os = darwin17.6.0
+build_vendor = apple
 builddir = .
 datadir = ${datarootdir}
 datarootdir = ${prefix}/share
 docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
-host = x86_64-pc-linux-gnu
+host = x86_64-apple-darwin17.6.0
 host_alias = 
 host_cpu = x86_64
-host_os = linux-gnu
-host_vendor = pc
+host_os = darwin17.6.0
+host_vendor = apple
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /afs/physics.wisc.edu/home/arock3/Research/FlavoredGMfiles/Todd/softsusy-4.1.4-Garon/Config/install-sh
+install_sh = ${SHELL} /Users/neilleonard/Repos/SoftSuzy/softsusy-4.1.4-Garon/Config/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -764,7 +764,7 @@ libsoft_la_SOURCES = src/decays.cpp src/twoBodyDecays.cpp \
 	src/mssmjacobian.cpp src/tensor.cpp src/rpvsusypars.cpp \
 	src/rpvsoft.cpp src/flavoursoft.cpp src/twoloophiggs.f \
 	$(am__append_13)
-libsoft_la_LDFLAGS =  -L/usr/lib/gcc/x86_64-linux-gnu/6 -L/usr/lib/gcc/x86_64-linux-gnu/6/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/6/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/6/../../.. -lgfortran -lm -lquadmath
+libsoft_la_LDFLAGS =  -L/usr/local/Cellar/gcc/9.2.0_1/lib/gcc/9/gcc/x86_64-apple-darwin17/9.2.0 -L/usr/local/Cellar/gcc/9.2.0_1/lib/gcc/9/gcc/x86_64-apple-darwin17/9.2.0/../../.. -lgfortran -lquadmath -lm
 DOCFILES = doc/rpcManual.pdf doc/rpvManual.pdf doc/neutManual.pdf \
 	   doc/nmssmManual.pdf doc/threeLoop.pdf doc/ho.pdf doc/decays.pdf
 
