@@ -1,0 +1,202 @@
+\documentclass[12pt]{article}
+\usepackage{epsfig}
+\usepackage{psfrag}
+\usepackage{enumitem}
+\usepackage{latexsym}
+\usepackage{indentfirst}
+\usepackage{fancyhdr}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{pifont}
+\usepackage{cite}
+\usepackage{bbold}
+\usepackage{ulem}
+\usepackage{color}
+\usepackage[footnotesize]{caption2}
+\usepackage{graphicx}
+\usepackage[center,footnotesize,hang]{subfigure}
+\usepackage{url}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{array}
+\usepackage{slashed}
+
+
+\newcommand {\red}{\color{red}}
+
+\textwidth 16.5 cm
+
+\textheight 25 cm \topmargin -2.5 cm \hoffset -1.5 cm
+
+%
+%%%%%%%%%%%%%%%%%%%%%%%       FRONTPAGE       %%%%%%%%%%%%%%%%%%%%%
+%
+
+\begin{document}
+
+\section*{Notes on Model B}
+
+These notes describe an investigation into the flavored gauge mediation scenario in {\tt arXiv:1610.0294}, for the case described there as Model B1, but generalizing it to allow for other possibilities for hierarchical charged fermion masses. 
+
+Here we will focus solely on the quarks.  The Yukawa coupling matrices for the up and down quark sectors take the form
+\begin{equation}
+Y =  \frac{y_{u,d}}{\sqrt{3}} \left (\begin{array}{ccc} 1 & \beta_{1i} & \beta_{2i} \\ \beta_{1i} & 1 & \beta_{2i} \\ \beta_{3i} & \beta_{3i} & \beta_{4i}           \end{array} \right ),
+\label{eq:yud}
+\end{equation}
+in which the index $i=u,d$, and we have suppressed the index on the label $Y$. Here the $y_{u,d}$ are dimensionless numbers that we include here to set an overall size for the $\beta$ coefficients in the up and down quark sectors, just for computational simplicity.  The messenger Yukawa matrices $Y^\prime_{1,2}$ are given by
+\begin{equation}
+Y^\prime_1=y_{u,d} \left (\begin{array}{ccc} -\frac{1}{2}-\frac{1}{2\sqrt{3}} & \frac{\beta_{1i}}{\sqrt{3}} & \;\; \frac{\beta_{2i}}{2} - \frac{\beta_{2i}}{2\sqrt{3}} \\  \frac{\beta_{1i}}{\sqrt{3}} & \;\; \frac{1}{2}-\frac{1}{2\sqrt{3}} & -\frac{\beta_{2i}}{2} - \frac{\beta_{2i}}{2\sqrt{3}} \\ \;\; \frac{\beta_{3i}}{2} - \frac{\beta_{3i}}{2\sqrt{3}} & -\frac{\beta_{3i}}{2} - \frac{\beta_{3i}}{2\sqrt{3}} & \frac{\beta_{4i}
+}{\sqrt{3}}
+\end{array} \right )
+\end{equation}
+\begin{equation}
+\;\; Y^\prime_2=y_{u,d} \left (\begin{array}{ccc} \;\; \frac{1}{2}-\frac{1}{2\sqrt{3}} & \frac{\beta_{1i}}{\sqrt{3}} &  -\frac{\beta_{2i}}{2} - \frac{\beta_{2i}}{2\sqrt{3}} \\  \frac{\beta_{1i}}{\sqrt{3}} & -\frac{1}{2}-\frac{1}{2\sqrt{3}} & \;\; \frac{\beta_{2i}}{2} - \frac{\beta_{2i}}{2\sqrt{3}} \\ -\frac{\beta_{3i}}{2} - \frac{\beta_{3i}}{2\sqrt{3}} & \;\; \frac{\beta_{3i}}{2} - \frac{\beta_{3i}}{2\sqrt{3}} & \frac{\beta_{4i}
+}{\sqrt{3}}
+\end{array} \right ).
+\end{equation}
+In {\tt arXiv:1610.0294}, the $\beta$'s were all taken to be exactly one.  In this admittedly unrealistic situation, Eq.~(\ref{eq:yud}) has the highly symmetric form
+\begin{equation}
+Y = \frac{y_{u,d}}{\sqrt{3}} \left (\begin{array}{ccc} 1 &1 & 1 \\ 1 & 1 & 1 \\ 1 & 1 & 1           \end{array} \right ),
+\end{equation}
+which has two vanishing eigenvalues and one $O(1)$ eigenvalue.  The messenger Yukawa matrices both have a block diagonal form in the basis in which the quarks are diagonal. 
+
+Let us now consider the case in which all of the $\beta$'s are real, but otherwise arbitrary. In our notation below, we will leave $\beta_{1,2,3,4}$ without an additional subscript to indicate $u$ or $d$, which is to be understood. With this in mind, the diagonalization of Eq.~(\ref{eq:yud}) takes place via the biunitary transformation,
+\begin{equation}
+U_L^\dagger Y U_R =Y_\text{diag},  
+\end{equation}
+in which
+\begin{equation}
+U_L^\dagger Y Y^\dagger U_L= (YY^\dagger)_\text{diag} =Y^2_\text{diag}, \qquad U_R^\dagger Y^\dagger Y U_R= (Y^\dagger Y)_\text{diag}= Y^2_\text{diag}.
+\end{equation}
+It is easily found that one of the eigenvalues of these Hermitian combinations is 
+\begin{equation}
+\lambda_1=\frac{y_{u,d}^2}{3}(-1+\beta_1)^2, 
+\label{eq:evalsq1}
+\end{equation}
+with corresponding normalized eigenvector 
+\begin{equation}
+v_1=\frac{1}{\sqrt{2}}(1,-1,0).  
+\end{equation}
+The other eigenvalues are given by
+\begin{equation}
+\lambda_{2,3}= \frac{y_{u,d}^2}{6} \left ((1+\beta_1)^2+2(\beta_2^2+\beta_3^2)+ \beta_4^2 \mp \sqrt{\Lambda} \right ),
+\label{eq:evalsqmp}
+\end{equation}
+in which $\Lambda$ is given by
+\begin{equation}
+\Lambda = (1+\beta_1)^4+4(\beta_2^4+\beta_3^4)+\beta_4^4+4((1+\beta_1)^2+\beta_4^2)(\beta_2^2+\beta_3^2)-2(1+\beta_1)^2\beta_4^2-8\beta_2^2\beta_3^2+16(1+\beta_1)\beta_2\beta_3 \beta_4.
+\label{eq:Lambdadef}
+\end{equation}
+Note the $\beta_2\leftrightarrow \beta_3$ symmetry of Eqs.~(\ref{eq:evalsqmp})-(\ref{eq:Lambdadef}).  
+
+ From the form of Eq.~(\ref{eq:evalsq1}) and Eq.~(\ref{eq:evalsqmp}), we can see that there are two general possibilities.  One option is that $\lambda_1$ is one of the small eigenvalues, which would have $\beta_1\rightarrow 1$, and $\lambda_2$ is the other, and hence $\lambda_3$ generically has an $O(1)$ value.  Another option is that $\lambda_1$ is the large eigenvalue, such that $\beta_1$ is appreciably different than 1, and both $\lambda_{2,3}$ are small.\\
+ 
+\noindent $\bullet$ {\bf Case 1: $\lambda_{1,2}\ll \lambda_3$.}  This case, in which $\beta_1\rightarrow 1$, has been explored in {\tt arXiv:1812.10811} and {\tt arXiv:1912.12938}. For a second light eigenvalue, this case also requires $\beta_4=\beta_2\beta_3$.  In the limit that $\beta_{2,3}$ are taken to be large while the coefficients $y_{u,d}$ are simultaneously taken to be small so as to fix the physical third generation quark masses.  This is the $\mathcal{S}_3$ singlet-dominated regime, as $\beta_4$, which is the coupling of the $\mathcal{S}_3$ singlet quarks and Higgs-messenger field, is therefore much larger than all of the other Yukawa couplings.  This limit allows for the possibility of sizable stop mixing, and consequently relatively light superpartners ($5-6$ TeV) compared to other viable limits of the parameter space.  We will not discuss this case further in these notes. \\
+
+
+
+
+
+\noindent $\bullet$ {\bf Case 2: $\lambda_{2,3}\ll \lambda_1$.}  This is the case we will focus on in these notes.  Here it is necessary that $\beta_1\neq 1$ such that $\lambda_1\gg \lambda_{2,3}$.  We also see from the form of Eqs.~(\ref{eq:evalsqmp})-(\ref{eq:Lambdadef}) that this case would require $\beta_1\rightarrow -1$ and $\beta_{i=2,3,4}\ll 1$, as well as $\Lambda \rightarrow 0$.  Indeed, $\lambda_{2,3}=0$ is achieved for $\beta_1=-1,\beta_2=\beta_3=\beta_4=0$.  
+For $\beta_1=-1$ only, the condition for $\Lambda=0$ is as follows:
+\begin{equation}
+-8 \beta_2^2 \beta_3^2+4(\beta_2^4+\beta_3^4)+4(\beta_2^2+\beta_3^2)\beta_4^2+\beta_4^2=0,
+\end{equation}
+which is zero only for $\beta_4=0$, $\beta_2=\beta_3$.
+Let us now consider this specific case but leave $\beta_2$ and $\beta_3$ unconstrained at present, recalling that eventually we will need to restrict ourselves to the case that $\beta_2\approx \beta_3$, and $\beta_{2,3}\ll 1$.  In this case, the mass eigenvalues thus take the form
+\begin{equation}
+U_L^\dagger Y U_R= Y_\text{diag}=\frac{y_u}{\sqrt{3}}\text{Diag}(\sqrt{2}\beta_2, \sqrt{2}\beta_3,2),
+\end{equation}
+which shows that we should take $y_t =y_u/(2/\sqrt{3})$ in this example to identify $y_t$ with the top quark Yukawa coupling.  Furthermore, the diagonalization matrices $U_{L,R}$ take the form
+\begin{equation}
+U_L=\left (\begin{array}{ccc} \frac{1}{\sqrt{2}} & 0 & \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} & 0 & -\frac{1}{\sqrt{2}} \\ 0& 1 & 0 
+\end{array} \right )
+\end{equation}
+\begin{equation}
+U_R=\left (\begin{array}{ccc} 0& \frac{1}{\sqrt{2}} &  \frac{1}{\sqrt{2}} \\ 0 & \frac{1}{\sqrt{2}} &  -\frac{1}{\sqrt{2}} \\ 1 & 0 & 0 
+\end{array} \right ).
+\end{equation}
+The messenger Yukawas in this basis take the form:
+\begin{equation}
+Y_1^\prime = y_t \left (\begin{array}{ccc} -\frac{\beta_2}{2\sqrt{2}}& -\frac{3}{4} & -\frac{\sqrt{3}}{4} \\ \;\;\; 0 &  -\frac{\beta_3}{2\sqrt{2}} & \frac{\beta_3}{2}\sqrt{\frac{3}{2}}\\ \frac{\beta_2}{2}\sqrt{\frac{3}{2}} & -\frac{\sqrt{3}}{4} & \;\;\; \frac{1}{4} \end{array} \right ),\qquad 
+%\end{equation}
+%\begin{equation}
+Y_2^\prime = y_t\left (\begin{array}{ccc}  -\frac{\beta_2}{2\sqrt{2}}& -\frac{3}{4} & \frac{\sqrt{3}}{4} \\ \;\;\; 0 &  -\frac{\beta_3}{2\sqrt{2}} & -\frac{\beta_3}{2}\sqrt{\frac{3}{2}}\\ -\frac{\beta_2}{2}\sqrt{\frac{3}{2}} & \frac{\sqrt{3}}{4} & \;\;\; \frac{1}{4} \end{array} \right )
+\end{equation}
+Let us assume that there are the same type of structures for the down-type quarks and for the charged leptons. 
+
+We turn now to the flavored gauge mediation contribution to the soft supersymmetry breaking parameters of the scalar sector.  Anticipating that (with the mass ordering given above) the $\beta_2$ parameters are proportional to first generation fermion masses, we will neglect them to leading order, and furthermore only consider leading order (linear) corrections in the second generation $\beta_3$ parameters. In what follows, all soft scalar mass-squared parameters are assumed to include a factor of $\Lambda^2/(4\pi)^4$, all trilinear scalar couplings are assumed to include a factor of $\Lambda/(4\pi)^2$, and we define the following combinations of the gauge couplings:  
+\begin{equation}
+g_{\tilde{u}}^2 =\frac{13}{30} g_1^2+\frac{3}{2}g_2^2+\frac{8}{3}g_3^2, \qquad g_{\tilde{d}}^2 =\frac{7}{30} g_1^2+\frac{3}{2}g_2^2+\frac{8}{3}g_3^2, \qquad g_{\tilde{l}}^2 =\frac{9}{10} g_1^2+\frac{3}{2}g_2^2.
+\end{equation}
+The nonvanishing corrections to the soft supersymmetry breaking terms then take the form:
+\begin{eqnarray}
+(\delta m_{\tilde{Q}}^2)_{11}&=&\frac{195}{16}(y_t^4+y_b^4)+\frac{15}{4}y_t^2 y_b^2+\frac{27}{16}y_b^2 y_\tau^2 - 3y_t^2 g_{\tilde{u}}^2-3y_b^2 g_{\tilde{d}}^2, \nonumber \\
+(\delta m_{\tilde{Q}}^2)_{33}&=&\frac{39}{16}(y_t^4+y_b^4)+\frac{5}{4}y_t^2 y_b^2+\frac{11}{16}y_b^2 y_\tau^2 - y_t^2 g_{\tilde{u}}^2-y_b^2 g_{\tilde{d}}^2, \nonumber \\
+(\delta m_{\tilde{Q}}^2)_{12}&=&(\delta m_{\tilde{Q}}^2)_{21}=-\frac{3}{4\sqrt{2}}(y_t^4\beta_{3u}+y_b^4 \beta_{3d}-y_t^2 y_b^2 (\beta_{3u}+\beta_{3d})), \nonumber \\
+%\end{eqnarray}
+%\begin{eqnarray}
+(\delta m_{\tilde{u}}^2)_{22}&=&\frac{189}{8}y_t^4+\frac{9}{2}y_t^2 y_b^2 - 6y_t^2 g_{\tilde{u}}^2, \qquad 
+% \nonumber \\
+(\delta m_{\tilde{u}}^2)_{33}=
+%&=&
+\frac{45}{8}y_t^4+\frac{1}{2}y_t^2 y_b^2- 2y_t^2 g_{\tilde{u}}^2, \nonumber \\
+(\delta m_{\tilde{d}}^2)_{22}&=&\frac{189}{8}y_b^4+\frac{9}{2}y_t^2 y_b^2+\frac{27}{8}y_b^2y_\tau^2 - 6y_b^2 g_{\tilde{d}}^2 \nonumber \\
+(\delta m_{\tilde{d}}^2)_{33}&=&
+\frac{45}{8}y_b^4+\frac{1}{2}y_t^2 y_b^2+\frac{11}{8}y_b^2y_\tau^2- 2y_b^2 g_{\tilde{d}}^2,
+\end{eqnarray}
+\begin{eqnarray}
+(\delta m_{\tilde{L}}^2)_{11}&=&\frac{141}{16}y_\tau^4+\frac{81}{16}y_b^2 y_\tau^2 - 3y_\tau^2 g_{\tilde{l}}^2, \qquad
+% \nonumber \\
+(\delta m_{\tilde{L}}^2)_{33}=
+%&=&
+\frac{17}{16}y_\tau^4+\frac{33}{16}y_b^2 y_\tau^2 - y_\tau^2 g_{\tilde{l}}^2,  \nonumber \\
+(\delta m_{\tilde{L}}^2)_{12} &=&
+(\delta m_{\tilde{L}}^2)_{21}=-\frac{3}{4\sqrt{2}}(y_\tau^4\beta_{3l}), \nonumber \\
+%\end{eqnarray}
+%\begin{eqnarray}
+(\delta m_{\tilde{e}}^2)_{22}&=&\frac{135}{8}y_\tau^4+\frac{81}{8}y_b^2y_\tau^2 - 6y_\tau^2 g_{\tilde{l}}^2, \qquad 
+% \nonumber \\
+(\delta m_{\tilde{e}}^2)_{33}=
+%&=&
+\frac{23}{8}y_\tau^4+\frac{33}{8}y_b^2 y_\tau^2- 2y_\tau^2 g_{\tilde{l}}^2,
+\end{eqnarray}
+\begin{eqnarray}
+\delta m_{h_u}^2=-\frac{9}{2}y_t^4-\frac{3}{2}y_t^2y_b^2,\qquad \delta m_{h_d}^2=-\frac{9}{2}y_b^4-\frac{3}{2}y_\tau^4-\frac{3}{2}y_t^2y_b^2,
+\end{eqnarray}
+\begin{eqnarray}
+(\tilde{A}_u)_{22}&=&-\frac{3}{\sqrt{2}}y_t^3\beta_{3u}, \qquad (\tilde{A}_u)_{33}=-\frac{3}{2}y_t^3-\frac{1}{2}y_t y_b^2, \nonumber \\
+(\tilde{A}_d)_{22}&=&-\frac{3}{\sqrt{2}}y_b^3\beta_{3d}, \qquad (\tilde{A}_d)_{33}=-\frac{3}{2}y_b^3-\frac{1}{2}y_b y_t^2, \nonumber \\
+(\tilde{A}_e)_{22}&=&-\frac{3}{\sqrt{2}}y_\tau^3\beta_{3l}, \qquad (\tilde{A}_e)_{33}=-\frac{3}{2}y_\tau^3. 
+\end{eqnarray}
+If the second generation masses are set to zero $(\beta_{3u}=\beta_{3d}=\beta_{3l}=0)$, all soft mass-squared parameters are flavor diagonal, and all trilinear scalar couplings have only $33$ entries.
+\end{document}
+
+In the limit that $\beta_{2,3}\ll 1$, $\delta m_{\tilde{Q}}^2$, $\delta m_{\tilde{u}}^2$, and $\tilde{A}_u$ take the form (neglecting terms of $O(\beta_2^2)$, $O(\beta_3^2)$, and $O(\beta_2\beta_3)$):
+\begin{equation}
+\delta m_{\tilde{Q}}^2=\frac{\Lambda^2}{(4\pi)^4} \left (\begin{array}{ccc} 
+\frac{195}{16} y_u^4-\left (8 g_3^2+\frac{9}{2} g_2^2+\frac{13}{10}g_1^2 \right ) y_u^2&-\frac{3}{4\sqrt{2}}\beta_3 y_u^4 &0\\ -\frac{3}{4\sqrt{2}}\beta_3 y_u^4&0  & 0\\ 0 & 0 & 
+\frac{39}{16} y_u^4-\left (\frac{8}{3} g_3^2+\frac{3}{2} g_2^2+\frac{13}{30}g_1^2 \right )
+\end{array} \right )\nonumber
+\end{equation}
+\begin{equation}
+\delta m_{\tilde{u}}^2=\frac{\Lambda^2}{(4\pi)^4} \left (\begin{array}{ccc} 0 & 0 & 0 \\ 0 & 
+\frac{189}{8} y_u^4-\left (16 g_3^2+9g_2^2+\frac{13}{5}g_1^2 \right ) y_u^2 &0 \\ 0& 0 &  \frac{45}{8} y_u^4-\left (\frac{16}{3} g_3^2+3 g_2^2+\frac{13}{15}g_1^2 \right ) y_u^2
+\end{array} \right )\nonumber
+\end{equation}
+\begin{equation}
+\tilde{A}_u=-\frac{\Lambda}{(4\pi)^2}\left (\begin{array}{ccc} \frac{3}{2\sqrt{2}}\beta_2y_u^3& 0 & 0\\ 0&\frac{3}{\sqrt{2}}\beta_3 y_u^3&0 \\ 0& 0& \frac{3}{2} y_u^3\end{array} \right )\nonumber
+\end{equation}
+\begin{equation}
+\delta m_{H_u}^2 = -\frac{\Lambda^2}{(4\pi)^4}  \frac{9}{2} y_u^4.\nonumber
+\end{equation}
+
+The soft terms involve rather lengthy but straightforward expressions, as seen below.  The nonzero terms are:
+\begin{eqnarray}
+\delta m_{\tilde{Q}_{11}}^2&=&\frac{65}{3}-\frac{26}{15}g_1^2-6 g_2^2-\frac{32}{3}g_3^2+\beta_2^2 \left (\frac{38}{3}-\frac{13}{15}g_1^2-3g_2^2-\frac{16}{3}g_3^2+\frac{23}{3}\beta_2^2\right )\nonumber \\ &+&\beta_3^2 \left (\frac{16}{3}+\frac{16}{3}\beta_2^2+\frac{4}{3}\beta_2^4 \right ) \nonumber \\
+\delta m_{\tilde{Q}_{22}}^2&=& \frac{\beta_3^2}{5(2+\beta_3^2)} \Big [215-26 g_1^2-90g_2^2+190 \beta_3^2+\beta_2^4(65+70\beta_3^2) \nonumber \\ &+&\beta_2^2(170-13 g_1^2-45 g_2^2-80 g_3^2+100 \beta_3^2) \Big ] \nonumber 
+\end{eqnarray}
+\begin{eqnarray}
+\delta m_{\tilde{Q}_{23}}^2&=&\delta m_{\tilde{Q}_{32}}^2= \frac{\sqrt{2}\beta_3(\beta_3^2-1)}{15(2+\beta_3^2)} \Big [ 245-26 g_1^2-90 g_2^2-160 g_3^2+205 \beta_3^2 \nonumber \\ &+&\beta_2^2(110-13 g_1^2-45 g_2^2-80 g_3^2+70 \beta_3^2)+\beta_2^4 (95+85 \beta_3^2)\Big] \nonumber \\
+\delta m_{\tilde{Q}_{33}}^2&=&\frac{1}{2+\beta_3^2}\Big[2 \beta_2^4(1-6\beta_3^2-3\beta_3^4+2\beta_3^6)+\frac{2}{45} \Big (195-450 \beta_3^2-225\beta_3^4+210 \beta_3^6\nonumber \\ &-&(1-\beta_3^2)^2(2+\beta_2^2)(13 g_1^2+45 g_2^2+80 g_3^2) + 30 \beta_2^2(7+6\beta_3^2+3\beta_3^4+2\beta_3^6) \Big)\nonumber
+\end{eqnarray}
