@@ -1,0 +1,37 @@
+Sizable Stop Mixing in Flavored Gauge Mediation Models with Discrete Non-Abelian Symmetries
+
+
+Results:
+First figure: different mMess with fixed tanBeta(10). Lambda fixed by higgs
+Heavy Higgs at 5-6 gEv, gluino at 5, with squarks in two
+
+
+
+
+Questions for Lisa:
+why does Todd keep sign of mu as a model paramter. Flagged into code, taking a particular value. May be positive
+what is the b parameter? coupling constant to hUp hDown. We substitute this wiht tanBeta (tan(vev(hUp)/veb(hDown))). use mZ and tan(beta ) instead of b and mu
+"Due to increased renormalization group running effects, the μ and b/μ terms are lighter than in the previous case, which leads to lighter masses for the heavy Higgs states."
+
+
+ Counting degrees. If I remember right, the number of degrees of freedom double (find out why), and going from 4 (3 quark bosons and on higgs) to 8 (now with the 4 heavy higgs). this indirectly lets you ignore the b values from the scalar higgs field. Having an up higgs and down higgs doulbe the degrees of freedom above
+
+
+ Quantum numbers and symmetry?
+
+
+ My analysis:
+ Low mMess: Increasing TanBeta 
+ 				lowers massive higgs
+ 				lowers higher gauginos
+ 				creates a lower differention of high squark families
+ 				differentiats lowers sleptons
+ raising mMess: 
+ 			Lowers the following: massive higgs, all gauginos (inparticular the "gaugino"), squarks (except e1), raises sleptons
+ 			changes the sqaurk families: the second lowest family moves the the middle
+ 			raises e1
+high mMess: Increasing TanBeta
+				bleeds the lower families of top squarks into the middle smoothly
+				lowers massive higgs, e1, differentiates lower sleptons and high sleptons (less so), lowers higg gaurinos
+
+lower case b: in higgs potential
