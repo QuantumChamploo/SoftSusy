@@ -3,6 +3,7 @@ import os
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 import numpy as np
+from numpy import linalg as LA
 
 path = os.getcwd()
 
@@ -22,7 +23,7 @@ higgs = [24, 25, 35, 36, 37]
 sleptons = [1000011, 1000013, 1000015, 2000011, 2000013, 2000015, 1000012,
 1000014, 1000016]
 squarks = [1000001, 1000003, 1000005, 2000001, 2000003, 2000005,
-1000002, 1000004, 1000006, 2000002, 2000004, 2000006,1000011]
+1000002, 1000004, 1000006, 2000002, 2000004, 2000006]
 gauginos = [1000021, 1000022, 1000023, 1000024, 1000025, 1000035,
 1000037, 1000039]
 
@@ -120,6 +121,8 @@ class Graph:
 		self.gauginos.sort(key=lambda x: x.mass)
 		self.higgs.sort(key=lambda x: x.mass)
 		self.ticklabels = []
+
+		self.makeMatrix()
 
 	def tossNegs(self):
 		print("in tossNegs")
@@ -344,7 +347,29 @@ class Graph:
 		plt.axes().set_xticklabels(['higgs', 'sleptons', 'gauginos', 'squarks'])
 
 		#plt.show()
+	def show(self):
+		plt.show()
+	def makeMatrix(self):
+		self.Nmat = np.matrix([[self.file.blocks['NMIX'][j+1,i+1] for i in range(int(np.sqrt(len(self.file.blocks['NMIX']))))] for j in range(int(np.sqrt(len(self.file.blocks['NMIX']))))])
+		self.Umat = np.matrix([[self.file.blocks['UMIX'][j+1,i+1] for i in range(int(np.sqrt(len(self.file.blocks['UMIX']))))] for j in range(int(np.sqrt(len(self.file.blocks['UMIX']))))])
+		self.Vmat = np.matrix([[self.file.blocks['VMIX'][j+1,i+1] for i in range(int(np.sqrt(len(self.file.blocks['VMIX']))))] for j in range(int(np.sqrt(len(self.file.blocks['VMIX']))))])
+		self.USQmat = np.matrix([[self.file.blocks['USQMIX'][j+1,i+1] for i in range(int(np.sqrt(len(self.file.blocks['USQMIX']))))] for j in range(int(np.sqrt(len(self.file.blocks['USQMIX']))))])
+		self.DSQmat = np.matrix([[self.file.blocks['DSQMIX'][j+1,i+1] for i in range(int(np.sqrt(len(self.file.blocks['DSQMIX']))))] for j in range(int(np.sqrt(len(self.file.blocks['DSQMIX']))))])
+		self.SELmat = np.matrix([[self.file.blocks['SELMIX'][j+1,i+1] for i in range(int(np.sqrt(len(self.file.blocks['SELMIX']))))] for j in range(int(np.sqrt(len(self.file.blocks['SELMIX']))))])
+		self.SNUmat = np.matrix([[self.file.blocks['SNUMIX'][j+1,i+1] for i in range(int(np.sqrt(len(self.file.blocks['SNUMIX']))))] for j in range(int(np.sqrt(len(self.file.blocks['SNUMIX']))))])
 
+		w,v = LA.eigh(self.Nmat)
+		self.Nmix = [self.Nmat, w,v]
+		w,v = LA.eigh(self.Umat)
+		self.Umix = [self.Umat,w,v]
+		w,v = LA.eigh(self.Vmat)
+		self.USQmix = [self.USQmat,w,v]
+		w,v = LA.eigh(self.DSQmat)
+		self.DSQmix = [self.DSQmat,w,v]
+		w,v = LA.eigh(self.SELmat)
+		self.SELmix = [self.SELmat,w,v]
+		w,v = LA.eigh(self.SNUmat)
+		self.SNUmix = [self.SNUmat,w,v]
 class Particle:
 	def __init__(self,pdg,mass):
 		self.pdg = pdg
