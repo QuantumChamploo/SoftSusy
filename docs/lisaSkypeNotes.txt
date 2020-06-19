@@ -1,0 +1,19 @@
+Q3 Hu1 SU(2)_L contraction: 
+Q3_1 Hu1_2 - Q3_2 Hu1_1
+
+the messangers fields M do not get a vev so they dont affect W_top
+
+curly H_u=( curly Hu1 curly Hu2 curly Hu3)^T =
+( (curly Hu^(2)), curly Hu^1)^T=
+( curly Hu^(2)_1, curly Hu^(2)_2, curly H_u^(1))^T
+= Ru (Hu, Mu1, Mu2)^T
+
+curly Hu^(1)= (Ru (Hu, Mu1, Mu2)^T)_3
+3= third component
+
+(curly Hu^(2)_1, curly Hu^(2)_2, curly Hu^(1))^T= Ru (Hu, Mu1, Mu2)^T
+curly Hu^(2)_1 = ( Ru (Hu, Mu1, Mu2)^T)_1
+
+
+Lisa2.pdf: 
+equation 9 goes to equation 10 by collection all of the H_u terms and this relates to the standard yukawa couplings, then 11 and 12 are the ones with the messanger terms, and we go between these by the above relations
