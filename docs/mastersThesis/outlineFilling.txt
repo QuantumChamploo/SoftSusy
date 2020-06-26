@@ -1,0 +1,68 @@
+1) introduction and Motivation
+
+Introduction: 
+
+	gauge symmetry structure : SU2LxU1 sym with associated quantum numbers
+
+	the creating of higgs and matterfields
+
+	10^16 gauge unified : I believe that this is the crossing of the gauge fields coupling constants at the above energy scale
+
+	 i) the mystery of the Higgs sector and the origin of the electroweak scale,
+ 	100 GeV (electro weak scale / gauge bosons)
+
+	the higgs mechanism: 
+		In sm we know that the electro weak has to be broken (boson mass), this is the simpilest version of this (obeys gauge symmetry)
+	 ii) the origin of quark and lepton masses in the SM.
+ 	yukawa coupling to the higgs , because the parity violation of the standard model (left and right have different quantum number), we can not couple the left hand (doublet under Su2) to the right hand(singlet under Su2). We must(?) introduce the higgs to couple them in the yukawa legrangian ( we can check this emperically from the top quark)
+
+ 	yukawa couple left to right with higgs, higgs needed to make the lin alg work (doublet doublet singlet), because SM is parity vio
+Motivation:
+	hierarchy problem:
+		 the SM has quadratic diveregences, which need to be adjusted at each order of pertabation theory
+
+		when cacluating the higgs mass through the ultra violet cutoff method (proper name?), the higgs wants to be at the largest mass scale of the theory. SO we need to fine tune (point above) to get rid of this.
+
+		the introduction of the super symmetry naturally cancels these naturally, which is a large part of the motivation
+
+		"the little hierarchy problem": that the mssm masses are too different , making the above cancelization not work as cleanly
+
+		This leads to the idea of supersymmetry and the minimal supersymmetric extension of the SM (the MSSM) to address i) above, and the importance of supersymmetry breaking both for i) and (indirectly) ii).
+
+	to i) (the super parnters are not the same masses clearly, so susy must be broken) .  to ii) , our model has parameterizes the betas, which we are looking to see how this affects the mass spectrums of the quark and leptons
+
+
+
+defs:
+hidden sector: no direct standard model interacts between that sector of the theory and "our world". Fields that live in the hidden sector have no "charges" (they dont transform with the sm gauge trans). No quantum numbers. They could (do) have gravitational interactions, as this is not in the SM. 
+
+Mediation is needed to mix the sm to the hidden sector (X_h), 
+
+flavoured gauge mediation means that the higgs and the messengers are mixing
+
+lisa skype notes:
+Ingredients of gauge mediation:
+"hidden" sector field(s) X
+X does not feel the strong, weak, or EM interactions.
+SM quantum numbers of X (SU(3)_c, SU(2)_L, U(1)_Y)=(1,1,0)
+Messenger fields:
+psi, psibar
+psi and psibar must transform wrt SM
+psi, psibar couple via Yukawa coupling to the hidden field X
+X psi psibar
+(psi psibar) combination must be SM singlet
+but psi itself can have SM quantum numbers:
+
+psi = (1,2,1/2)
+
+psibar = (1, 2bar=2, -1/2)
+
+(psibar psi) = (1,1,0)
+
+Flavored gauge mediation: the psi, psibar mix with the Higgs Hu, Hd of the MSSM
+They have the same SM quantum numbers, so they can mix
+
+minimal gauge mediation: messengers only have Yukawa couplings to X. They don't have Yukawa couplings to the SM quarks and leptons.
+
+not minimal gauge mediation, because the observed higgs mass is too large, and we would need to make the super partners very heavy to fix this descrepency
+

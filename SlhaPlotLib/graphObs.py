@@ -350,26 +350,49 @@ class Graph:
 	def show(self):
 		plt.show()
 	def makeMatrix(self):
-		self.Nmat = np.matrix([[self.file.blocks['NMIX'][j+1,i+1] for i in range(int(np.sqrt(len(self.file.blocks['NMIX']))))] for j in range(int(np.sqrt(len(self.file.blocks['NMIX']))))])
-		self.Umat = np.matrix([[self.file.blocks['UMIX'][j+1,i+1] for i in range(int(np.sqrt(len(self.file.blocks['UMIX']))))] for j in range(int(np.sqrt(len(self.file.blocks['UMIX']))))])
-		self.Vmat = np.matrix([[self.file.blocks['VMIX'][j+1,i+1] for i in range(int(np.sqrt(len(self.file.blocks['VMIX']))))] for j in range(int(np.sqrt(len(self.file.blocks['VMIX']))))])
-		self.USQmat = np.matrix([[self.file.blocks['USQMIX'][j+1,i+1] for i in range(int(np.sqrt(len(self.file.blocks['USQMIX']))))] for j in range(int(np.sqrt(len(self.file.blocks['USQMIX']))))])
-		self.DSQmat = np.matrix([[self.file.blocks['DSQMIX'][j+1,i+1] for i in range(int(np.sqrt(len(self.file.blocks['DSQMIX']))))] for j in range(int(np.sqrt(len(self.file.blocks['DSQMIX']))))])
-		self.SELmat = np.matrix([[self.file.blocks['SELMIX'][j+1,i+1] for i in range(int(np.sqrt(len(self.file.blocks['SELMIX']))))] for j in range(int(np.sqrt(len(self.file.blocks['SELMIX']))))])
-		self.SNUmat = np.matrix([[self.file.blocks['SNUMIX'][j+1,i+1] for i in range(int(np.sqrt(len(self.file.blocks['SNUMIX']))))] for j in range(int(np.sqrt(len(self.file.blocks['SNUMIX']))))])
+		try:
+			self.Nmat = np.matrix([[self.file.blocks['NMIX'][j+1,i+1] for i in range(int(np.sqrt(len(self.file.blocks['NMIX']))))] for j in range(int(np.sqrt(len(self.file.blocks['NMIX']))))])
+			w,v = LA.eigh(self.Nmat)
+			self.Nmix = [self.Nmat, w,v]	
+		except:
+			a = 8	
+		try:
+			self.Umat = np.matrix([[self.file.blocks['UMIX'][j+1,i+1] for i in range(int(np.sqrt(len(self.file.blocks['UMIX']))))] for j in range(int(np.sqrt(len(self.file.blocks['UMIX']))))])
+			w,v = LA.eigh(self.Umat)
+			self.Umix = [self.Umat,w,v]
+		except:
+			a = 8	
+		try:
+			self.Vmat = np.matrix([[self.file.blocks['VMIX'][j+1,i+1] for i in range(int(np.sqrt(len(self.file.blocks['VMIX']))))] for j in range(int(np.sqrt(len(self.file.blocks['VMIX']))))])
+			w,v = LA.eigh(self.Vmat)
+			self.USQmix = [self.USQmat,w,v]	
+		except:
+			a = 8	
+		try:
+			self.USQmat = np.matrix([[self.file.blocks['USQMIX'][j+1,i+1] for i in range(int(np.sqrt(len(self.file.blocks['USQMIX']))))] for j in range(int(np.sqrt(len(self.file.blocks['USQMIX']))))])
+			self.USQmix = [self.USQmat,w,v]
+			w,v = LA.eigh(self.DSQmat)		
+		except:
+			a = 8	
+		try:
+			self.DSQmat = np.matrix([[self.file.blocks['DSQMIX'][j+1,i+1] for i in range(int(np.sqrt(len(self.file.blocks['DSQMIX']))))] for j in range(int(np.sqrt(len(self.file.blocks['DSQMIX']))))])
+			w,v = LA.eigh(self.DSQmat)
+			self.DSQmix = [self.DSQmat,w,v]		
+		except:
+			a = 8	
+		try:
+			self.SELmat = np.matrix([[self.file.blocks['SELMIX'][j+1,i+1] for i in range(int(np.sqrt(len(self.file.blocks['SELMIX']))))] for j in range(int(np.sqrt(len(self.file.blocks['SELMIX']))))])
+			w,v = LA.eigh(self.SELmat)
+			self.SELmix = [self.SELmat,w,v]
+		except:
+			a = 8	
+		try:
+			self.SNUmat = np.matrix([[self.file.blocks['SNUMIX'][j+1,i+1] for i in range(int(np.sqrt(len(self.file.blocks['SNUMIX']))))] for j in range(int(np.sqrt(len(self.file.blocks['SNUMIX']))))])
+			w,v = LA.eigh(self.SNUmat)
+			self.SNUmix = [self.SNUmat,w,v]
+		except:
+			a = 8	
 
-		w,v = LA.eigh(self.Nmat)
-		self.Nmix = [self.Nmat, w,v]
-		w,v = LA.eigh(self.Umat)
-		self.Umix = [self.Umat,w,v]
-		w,v = LA.eigh(self.Vmat)
-		self.USQmix = [self.USQmat,w,v]
-		w,v = LA.eigh(self.DSQmat)
-		self.DSQmix = [self.DSQmat,w,v]
-		w,v = LA.eigh(self.SELmat)
-		self.SELmix = [self.SELmat,w,v]
-		w,v = LA.eigh(self.SNUmat)
-		self.SNUmix = [self.SNUmat,w,v]
 class Particle:
 	def __init__(self,pdg,mass):
 		self.pdg = pdg

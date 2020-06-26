@@ -4,7 +4,7 @@ import time
 
 start = time.time()
 #d = Graph("sunday.slha",[25])
-d = Graph("slha/span5Point3.slha")
+d = Graph("sunday.slha")
 
 
 d.plot()
