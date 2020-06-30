@@ -2,6 +2,8 @@
 
 Introduction: 
 
+minimal coupling rule griffiths pg 360. this is the mechanism that we create the covariant derivative. Starting with the legre, we suppose local gauge invariance, which creates the need to create the covariant derivative 
+
 	gauge symmetry structure : SU2LxU1 sym with associated quantum numbers
 
 	the creating of higgs and matterfields
@@ -65,4 +67,29 @@ They have the same SM quantum numbers, so they can mix
 minimal gauge mediation: messengers only have Yukawa couplings to X. They don't have Yukawa couplings to the SM quarks and leptons.
 
 not minimal gauge mediation, because the observed higgs mass is too large, and we would need to make the super partners very heavy to fix this descrepency
+
+
+Gauge Mediation:
+GM paper
+"The pos- sibility then exists to break SUSY dynamically, but in some sector which only couples to the SM sector via loops or via non-renormalizable opera- tors. We then refer to the SUSY-breaking sector as “hidden,” the SM sector as “visible,” and the intermediate states, which appear in loops or are integrated out to produce the non-renormalizable interactions, as “messengers” or “mediators.”
+"
+"We then refer to the SUSY-breaking sector as “hidden,” the SM sector as “visible,” and the intermediate states, which appear in loops or are integrated out to produce the non-renormalizable interactions, as “messengers” or “mediators.”" ask lisa bout the intermediate states part, also ask about N = 1
+
+how you dont just go from particle to super particle
+"With arbitrary, random pa- rameters the MSSM has serious problems with flavor (and also CP) violation. Put simply, once SUSY is broken, sparticles and particles need not be diagonal in the same eigenbasis. That is, the rotations which take the fermions from their in- teraction to their mass eigenstates need not do the same for their superpartners. If we􏰑 denote these unitary rotation matrices as U and U for the fermions and scalars respectively, then the inter- ation of a gaugino with a fermion and its scalar partner picks up a factor U†U􏰑 ̸= 1, leading to flavor-changing neutral currents (FCNCs)."
+
+ "If the scalar soft masses were functions only of the gauge charges of the individual sparticles, universality would be automatic." in min gauge mediation text, ask lisa bout this
+
+"Because the ψˆ fields are charged under the SM gauge groups, the gauginos of the MSSM can re- ceive masses through loops of these new fields. " lisa? 
+
+gauginos get masses at 1 loop, scalars at 2 loops, then trilinear soft terms at second loop as well
+
+"Finally, the trilinear soft terms (A-terms) arise at 2-loops. Since they have mass dimension-1, they are small compared to the rest of the soft masses and thus one can take A(M) ≃ 0."
+
+"One success of this particular mechanism for gauge mediation is that while gaugino masses arise at 1-loop, scalar mass-squareds arise at 2- loops. Thus gaugino and scalar masses are the same order in α. This is a noteworthy, be- cause the simplest models of gauge mediation (those without the messenger fields) typically give masses to scalars at lower order than to gauginos, producing models with ultra-light gluinos."
+
+super gravity?
+
+
+
 

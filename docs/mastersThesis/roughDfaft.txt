@@ -1,0 +1,7 @@
+Intro:
+
+simple assumptions and simple dynamics. This is the framework that provides the so called "elegance" that motivates so many physicists thoughout time. Taking this perspective to attempt to explain the physical world is truly when the modern physics discipline started, which is why this is where our studies start in our youth. Initially, we assume the world can be described by forces, and let F = ma. Then it got a bit more fancy, and we assumed that the world is described by forces and potentials, and created a little something called the Legrangian. At the time, many thought we had done it, solved the physical world. The proper assumptions had been found, and so had its associated dynamics. On the other side of the quantum revolution, this is a laughable point of view. The quantum is messy and chaotic, and the former simplicity that we enjoyed was out the window. But as we are closer to mathematicians that biologists, we choose simple assumpmtions, the standard model, and steadily put more complicated dynamics upon that. That's where we start our discussion today, with the intent to extend it to Super-Symmetry and Flavoured Gauge Mediation Models with Discrete Non-Abelian Symmetries. 
+
+
+potentials to add: many quantum frameworks had been made, schrodinger dirac ect
+
