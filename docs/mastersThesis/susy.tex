@@ -1,0 +1,268 @@
+
+% \newcolumntype{L}{>{$}l<{$}} % math-mode version of "l" column type
+
+% \renewcommand{\arraystretch}{1.5}
+
+\chapter{Super Symmetry}
+\section{Motivation: the Hierarchy Problem}
+
+The Standard Model with the Higgs mechanism in hand, represents possibly the most powerful theories of modern physics. By matching predictions to experiment to one part in ten billion, it has reached accuracies akin to measuring the width of the United States within the thickness of the human hair. Of course though, it has it’s limitation. The most glaring being its lack of gravitation in the framework. With gravity being a relatively weak force, it is not until the Planck Energy scale
+
+\begin{equation*}
+    M_P = (8 \pi G_{Newton})^{-\frac{1}{2}} = 2.4 * 10^18 Gev
+\end{equation*}
+
+when quantum gravity effects become substantial. This energy scale is 15 orders of magnitude above the energy scale at the LHC, and may be beyond what is even possible for realistic experimental implementation.  The massive discrepancy between this scale and the electo-weak breaking scale of the SM, at ~100GeV, is known as the “hierarchy problem”. While the Standard Model is a fully renomalizable theory, this issue necessitates some tricky mathematical maneuvers. 
+
+ For example, consider the corrections to $M_H^2$ from a loop containing a Dirac fermion f with mass $m_f$ coupling to the Lagrangian like
+
+\begin{equation*}
+  \Lagr_f = -\lambda_f H \bar{f} f
+\end{equation*}
+This yields corrections to the Higgs mass:
+
+\begin{equation*}
+    \delta m_H^2 = - \frac{| \lambda_f |^2}{8 \pi^2} \Lambda_{UV}^2 + ...
+\end{equation*}
+
+Here $\Lambda_{UV} $ is the ultra-violet cutoff used to regulate the loop integral and the ellipses contains terms proportional to $m_f^2*ln(\Lambda_{UV})$ , which grow logarithmically with $\Lambda_{UV} $ at most. The largest fermion to contribute is the top quark, which has 0(1). Of course, this issue can be cancelled by tuning, introducing a counterterm:
+\begin{equation*}
+    M_h^2 = M_{h,0}^2 + \delta M_h^2 + counterterm
+\end{equation*}
+With the mass of the Higgs boson being known to be ~125GeV, and taking $\Lambda_{UV} $ to where we suspect new physics $M_P$, the counterterm must be adjusted to a precision of roughly 1 part in $10^15$ in order to cancel the quadratically divergent contributions to $\delta M_h^2$. This adjustment must be made at each order in perturbation theory. Again, this is not a nail in the coffin of the Standard Model, but when looking for a fundamental theory we would hope that this discrepancy between the electro-weak and the Planck scale would be motivated by something in the theory, instead of an arbitrary decision made by the universe
+
+
+
+
+It is important to note that getting rid of the quadratic divergences is a necessary but not sufficient step to solving the hierarchy problem. Lets say we abandon a physical interpretation of the cutoff momentum and use dimensional regularization for the loop integral, then there is no $\Lambda_{UV} $ piece. However, the terms proportional to $m_f^2$. Thus the problem is not just the sensitivity to the cutoff momentum but the sensitivity to the largest particles of the theory. If, as we expect, new physics and particles at the Planck scale, then we still need the massive and precise cancellations provided by the counter terms. We are left with two options: the rather uncomfortable assumption that high-mass particles of the new theory does not couple to the Higgs field, or some convenient cancellations are needed between contributions to the $m_H^2$. 
+
+\newline
+\newline
+
+$
+\begin{fmffile}{feyngraph}
+    \Delta m_H^2
+    = \quad\parbox{100pt}{
+    \begin{fmfgraph*}(100,80)
+      \fmfleft{i}
+      \fmfright{o}
+      \fmfv{label=H,l.a=60}{i}
+      \fmfv{label=H,l.a=120}{o}
+      \fmf{dashes,tension=1}{i,v1} % ,label=H,label.side=left
+      \fmf{dashes,tension=1}{v2,o}
+      \fmf{fermion,left,tension=0.4,label=$\text{f}$}{v1,v2,v1}
+    \end{fmfgraph*}}
+    \quad + \quad\parbox{100pt}{
+
+    \begin{fmfgraph*}(100,80)
+      \fmfleft{i}
+      \fmfright{o}
+      \fmftop{m}
+      \fmfv{label=H,l.a=60}{i}
+      \fmfv{label=H,l.a=120}{o}
+      \fmflabel{$\text{S}$}{m}
+      \fmf{dashes,tension=1}{i,v1}
+      \fmf{dashes,tension=1}{v1,o}
+      \fmf{fermion,right,tension=0}{v1,m,v1}
+    \end{fmfgraph*}}
+    \quad + \quad\ldots
+\end{fmffile}
+$
+\newline
+
+Now for the sake of argument, lets consider if the Higgs coupled to a heavy complex scalar with a Lagrangian term $-\lambda |H|^2 |S|^2$. The feynman diagram from above will give a correction 
+\begin{equation*}
+    \delta m_H^2 = \frac{\lambda_S}{16 \pi^2}[\Lambda_{UV}^2 - 2 m_s^2 \ln{\Lambda_{UV}/m_S} + ...]
+\end{equation*}
+
+Noticing the relative minus between the quadratic divergences, some nice cancellations are set up to be taken advantage of. If we suppose for each quark and lepton there is two complex scalars (on for each helicity) with $\lambda_S = |\lambda|^2$), then our need for such precise fine-tuning of the Higgs mass will be unnecessary. We call such a supposition a “symmetry”, thus we have motivated a new framework, SuperSymmetry (SUSY). 
+
+
+
+
+\section{Unbroken Super Symmetry}
+Coming with this new symmetry between fermions and bosons, is a supersymmetric operator $Q$. This turns a bosonic state into a ferminonic state and visa-versa.
+
+\begin{equation*}
+    Q | Boson \rangle = | Fermion \rangle , Q | Fermion \rangle = | Boson \rangle , 
+\end{equation*}
+$Q$ must be an anti-commuting spinor, making it an intrisically a complex object. As such, the hermetian conjugate of $Q$,$Q^{\dagger}$, must also be a super-symmetry generator.
+With SUSY we are extending the Standard Model, which is a chiral theory, I.e. that left handed and right handed fermions transform differently under the gauge group. This implies that the $Q Q*$ operators must satisfy the following commutation/anti-commutation relations
+
+\begin{align*}
+    \{Q,Q^{\dagger}\} &= P^{\mu} \\
+    \{Q,Q\} &= \{Q^{\dagger},Q^{\dagger}\} = 0 \\
+    [P^{\mu},Q] &= [P^{\mu},Q^{\dagger}] = 0
+\end{align*}
+
+Where $P^u$ is the fourmomentum generator of spacetime translations. If $\psi_1$ and $\psi_2$ and super-symmetric partners, by definition $\psi_1$ is proportional to some combination of $Q$ and $Q^{\dagger}$ acting on $\psi_2$. With the $P^2$ term commuting with the $Q$ and $Q^{\dagger}$operators , it is implied that the masses of the super partners are the same masses. This is an issue that we will return to. These super partners are put into a single particle states of irreducible representation of the supersymmetry algebra, called super-muliplets. In these super-multiplets, there are equal numbers of fermonic and bosonic degree of freedom (Should we add a proof?).
+
+
+To reference the spin-0 particles of the quarks and leptons, an “s” is prepended, where “s” is for scalar. So, they can be referred as sqaurk, slepton, or sfermion generically. Due to the differences in gauge transformations of the standard model, the left-handed and right-handed quarks and leptons are separate two-component Weyl fermions. To denote the super partner, a tilde is added to the corresponding Standard Model particle. When referring to the handedness of the super partner, it is referencing the handedness of the standard particle, not the super partner. Similarly, this is done to the partners of neutrinos, but handedness is unspecified as they are always left handed. For the gauge bosons, their partners are spin1-2 particles. As such an “ino” is appended the particle name, giving us binos, winos and gluinos. Collectively they are known as gauginos. Similarly, the partner to the higgs is a spin 1/2 particle, named the higgsino. The gauginos and higgsinos all charged under the Standard Model and have the same quantum numbers, so they are expected to mix. The mass eigenstate of this mixture with charge are called charginos, while the neutral ones all called neutralinos.  
+
+
+
+The simplest possibility for a super-multiplets with equal number of bosons and fermions has a single Weyl fermion and two real scalars. The Well fermion has 2 helicity states, so $n_f$ = 2, and each real scalar has $n_b$ = 1. It is natural to reparameterize these 2 real scalars as one complex scalar. This type of super-multiplet is called a chiral super-multiplet. These are the super-multiplet that is used for matter fields, where the Standard model fermions are the Weyl fermion of the supermultiplet, and the complex spin-0 scalar field is the associated sfermion. 
+
+The next-simplest possibly of a super-multiplet contains a spin-1 vector boson and a spin-1/2 Weyl fermion. Both of these have two helicity states, so $n_f$ = $n_b$ = 2. If a spin-3/2 Weyl fermion was used instead, then our theory would note be renormalizable (add ref maybe). This is the natural super-multiplet for the gauge bosons and they’re associated gauginos. Such a combination of spin-1/2 gauginos and spin-1 gauge bosons is called a gauge or vector supermultiplet. 
+
+While there are other combinations of particles that can satisfy $n_b$ = $n_f$, but these are always reducible to combinations of chiral and gauge supermultiplets in non-extended super symmetries. The notation of the supermultiplets and their associated charges under Standard Model symmetries are listed in the tables. 
+
+While the Standard Model was able to make do with a single Higgs doublet, SUSY can not. The fermionic partner in the chiral higgs supermultiplet is a weak isodoublet with weak hypercharge of either $Y = \mp 1/2$. A necessary condition of cancellation of gauge anomalies are that $Tr(T_3^2Y) = Tr(Y^3) = 0$, where $T_3$ and $Y$ are the thrid component of weak isospin and the weak charge respectively. For the the quarks and the leptons of the Standard model, this trace is preserved. Thus, with only one Higgs supermultiplet, regardless of the weak hypercharge of the higgsino, the trace with be non-zero. To adjust for this, two higgs doublets are introduced, where their respective Higgsinos have opposite weak hypercharge. This is a natural extentension anyways, as it will prove necessary to couple the Higgsino with positive hypercharge to the up quarks, and the higgsino with the negative hypercharge to the down quarks. These are denoted as such: $H_u$ and $H_d$.    
+
+A chiral superfield $\Phi$ can be written in terms of anti-commuting Grassman variables, $\Theta$, as 
+\begin{equation*}
+    \Phi(x) = S(x) + \sqrt{2}\Theta \zeta(x) + \Theta\Theta F(x)
+\end{equation*}
+(ask lisa about S and Zeta functions) F(x) are the auxillary fields. These are fields that come from constaints on the EOM of the system. These fields do not have kinetic terms, but are helpful as a mathematical notation, and become relavent later, to the spontaneous symmetry breaking of SUSY.
+
+In the developement of SUSY models, a super-potential is first made. (more details needed here). The Lagrangain are derived from the super potentials as such
+
+\begin{equation*}
+    \Lagr_W = -\sum_i|\frac{\partial W}{\partial \Phi_i}|^2 -\frac{1}{2}\sum_{ij}[\bar{\psi}_{iL} \frac{\partial^2 W}{\partial \Phi_i \partial \Phi_j}\psi_j + h.c ]
+\end{equation*}
+A derivation can be found in (ref9 of mssmwhy.pdf)
+
+
+When developing a new theory, it is always instructive to start and the minimal implementation, expanding from there as one encounters error. Nature already makes things hard enough, so starting at the simplest version preferable. As such, the most common super-symmetric theory is the Minimal Super Symmetric (MSSM) theory. The super-potential for the MSSM is :
+
+\begin{eqnarray}
+W= Q_i (Y_u)_{ij} \bar{u}_j H_u+Q_i (Y_d)_{ij} \bar{d} H_d + L_i (Y_e)_{ij} \bar{e} H_d  +\mu H_u H_d. \nonumber
+\end{eqnarray}
+
+Where the fields above are super-fields. The $Y_{u,d,e}$ are Yukawa couplings, and $\mu$ is the mass parameter for the higgs sector, which we should be familar with from the Higgs Mechanism discussion above. By "minimal" in MSSM, we mean that there is only one set of SuperSymmetric operators: $Q Q^{\dagger}$. Also called $N=1$ supersymmetric theories, where is the number of sets of above operators. Super-symmetric theories with $N \neq 1$ have been explored, but are beyond the scope of this work. 
+
+The equation above looks simple, but contains many variables, each each being a degree of freedom of the hypothesis space of the MSSM. With an emphasis on "minimal", there are 106 unknown parameters [fgm 4]: 26 masses, 37  angles and 43 phases. One of the important goals in this field is/has been to develop theories that predict these quantities as opposed to just putting them in by hand. 
+
+
+Super Symmetry is a key branch of modern theoretical physics, and as such has hundreds of researchers around the world specialize in the subject. It so natuarlly explains questions that we have about electro-weak phenomena and extensions of the standard model. But it has a glaring error that we not discussed: where are the sparticles?
+
+
+\section{MSSM: how it is broken}
+
+Clearly the super partners of unbroken SUSY have not been found, or there would be a massless super partner of the photon running around everywhere. Should supersymmetry exist, we expect it to be an exact symmetry that is broken spontaneous. The underlying Lagrangian density must be symmetric under supersymmetric operators, but the vaccum state does not need to be. From a practical point of view it is useful to parameterize our ignorance, and just introduce extra terms into the effective MSSM Lagrangian.  Wanting to keep the elegant solution to the hierarchy problem that SUSY provides while creating a mass difference between the super partners, we impose that these additional terms must have positive mass dimensions. 
+
+\begin{equation*}
+    \Lagr_{effective} = \Lagr_{mssm} + \Lagr_{soft}
+\end{equation*}
+
+Where $\Lagr_{SUSY}$ contains all of the gauge and Yukawa interactions and preserves supersymmetry invariance, and $\Lagr_{soft}$ the terms that violate super symmetry. The general soft supersymmetry-breaking terms are
+
+% \begin{align*}
+    
+    
+%     -\Lagr_{soft} = &+\frac{1}{2}(M_1\tilde{B}\tilde{B} + M_2\tilde{W}\tilde{W} + M_1\tilde{g}\tilde{g})\\
+%     &+ m_{H_u}^2 |H_u|^2 + m_{H_u}^2 |H_u|^2 \tilde{Q_i}(m_{\tilde{Q}}^2)_{ij}\tilde{Q}_j^* + \tilde{L_i}(m_{\tilde{L}}^2)_{ij}\tilde{L}_j^* \\
+%     &+ (H_u\tilde{Q}_i(\tilde{A}_u)_{ij}\tilde{u}_{R_j} +H_d\tilde{Q}_i(\tilde{A}_d)_{ij}\tilde{d}_{R_j} + H_d\tilde{L}_i(\tilde{A}_e)_{ij}\tilde{e}_{R_j} +cc)
+%     \\
+%     &+ (bH_uH_d + cc)
+    
+% \end{align*}
+
+\begin{eqnarray}
+-\mathcal{L}_{\textrm soft} &=& \frac{1}{2} \left (M_1 \tilde{B}\tilde{B} +M_2 \tilde{W}\tilde{W}+M_3 \tilde{g}\tilde{g} \right )\nonumber \\
+&+& m^2_{H_u} \vert H_u\vert^2 + m^2_{H_d} \vert H_d\vert^2+\tilde{Q}_i (m^2_{\tilde{Q}})_{ij} \tilde{Q}_j^* +\tilde{L}_i (m^2_{\tilde{L}})_{ij} \tilde{L}_j^*\nonumber \\ &+& \tilde{u}_{Ri}^* (m^2_{\tilde{u}})_{ij} \tilde{u}_{Rj} + \tilde{d}_{Ri}^* (m^2_{\tilde{d}})_{ij} \tilde{d}_{Rj} + \tilde{e}_{Ri}^* (m^2_{\tilde{e}})_{ij} \tilde{e}_{Rj} \nonumber \\ &+& \left ( H_u \tilde{Q}_i (\tilde{A}_u)_{ij} \tilde{u}_{Rj}+  H_d \tilde{Q}_i (\tilde{A}_d)_{ij} \tilde{d}_{Rj}+ H_d \tilde{L}_i (\tilde{A}_e)_{ij} \tilde{e}_{Rj}+{\textrm cc} \right ).\nonumber \\
+ &+&(b H_u H_d+{\textrm cc} ).
+ \label{Lsoft}
+\end{eqnarray}
+
+The first line consists of gaugino masses $M_{1,2,3}$ for $U(1)_L$, $SU(2)_L$, and $SU(3)_c$, respectively. The second and third lines are the the soft supersymmetry breaking scalar mass-squared parameters. The fourth line are the trilinear scalar couplings, referred to as the $\tilde{A}$ terms. The last term is the Higgs term, using the up and down Higgs fields motivated earlier. The $b$ term is sometimes written as $b= B_\mu \mu$, and will be important in our discussion a bit later.
+
+The first line consists of the gaugino masses $M_{1,2,3}$ for hypercharge, $SU(2)_L$, and $SU(3)_c$, respectively. The second and third lines list the soft supersymmetry breaking scalar mass-squared parameters. The fourth line has the trilinear scalar couplings (known as the $\tilde{A}$ terms). The last term is the $b$ term that enters the Higgs potential directly; sometimes $b$ is written as $b= B_\mu \mu$. These terms represent the most general Lagrangian with each term math dimension 4. These terms will let us break SUSY with out destroying the solution to the hierarchy problem.
+
+With these terms, we can now use the SoftSusy library (ref). For each model, we specify these soft breaking terms, and SoftSusy we perform Renormlization Group flow. This gives us a mass spectrum at the collider energy scale. 
+
+
+
+Denoting the largest mass term associated with the $\Lagr_{soft}$ as  $m_{soft}$, the contributions from$\Lagr_{soft}$ to the Higgs scalar square mass must vanish as $m_{soft} \rightarrow 0$ . By dimensional analysis this contribution can not go as $\Lambda_{UV}^2$ . It also can not go like $\delta m_H^2 ~ m_{soft}\Lambda_{UV}$, because in general the loop momentum integrals always diverge either quadratically or logarithmically, not linearly as $\Lambda_{UV} \rightarrow \infty$. Giving the form:
+\begin{equation*}
+    \delta m_H^2 = m_{soft}^2 [\frac{\lambda}{16 \pi^2}\ln{\lambda_{UV}/m_{soft}}+ ...]
+\end{equation*}
+With $m_{soft}$ setting the scale of the mass splitting between super partners , the above tells that the super partner masses should not be too huge. Otherwise, our solution to the hierarchy problem is lost as the contributions to the Higgs scalar square mass becomes uncomfortably large compared to the electro-weak breaking scale at 174. GeV. This issue is known as the “little hierarch problem”. To estimate when this would be an issue, let $\lambda_{UV} ~ M_P$ and $\lambda ~ 1$ from above, which gives us that the masses of the lightest super partners should be in the TeV scale. 
+
+In general, the general MSSM has a large flavor problem. After SUSY breaking, the particles and sparticles do not need to be diagonal in the same basis. This means that the rotations matrix $U$ that transforms the fermions from their interaction to their mass eigen states needs not be the same as the rotations matrix $\tilde{U}$ that rotates the sfermions from interaction to the mass eigenstates. This makes $U\tilde{U} \neq 1$, which leads to flavor changing neutral currents (FCNC). There are strong restrictions on these processes as we see them at the current collider energy levels. 
+
+An additional issue is the super trace theorem. If supersymmetry breaking is communicated to ordinary supermultiples by tree-level renomalization couplings, then the sum of the particle tree-level squared masses, weighted by the corresponding number of degrees of freedom, is equal in the bosonic and fermionic sectors [theories with gauge med 123];
+
+\begin{equation*}
+    STrM^2 = \sum_j(-1)^(2J)(2J+1)M_J^2 = 0
+\end{equation*}
+Here $M_J$  denotes the tree-level mass of a particle with spin J. Rather generically, this theorem implies, in cases of tree-level communication, the existence of a supersymmetric particle lighter than its ordinary partner. Obviously, such particle has not been found, raising a big red flag for the MSSM
+
+\section{Fixing the MSSM: Gauge mediation and its flavors}
+ As a consequence of our considerations above, when constructing realistic supersymmetric theories we must assume that there is no renormalizable tree-level coupling between the “visible” SM sector, and the Susy-breaking sector, which is referred to as “hidden”.  By integrating out the heavy particles of the “hidden” sector to create an effective theory describing the “visible” sector , we would have a non-vanishing super trace. At the energy of the “visible” sector, the effective Lagrangian would have  these non-renormalizable kinetic terms at the “hidden” scale, mediated by gauge interactions.  These sectors communicate between themselves in these intermediate states, which we call “messengers” or “mediators”.
+
+While the soft terms are the mechanism that generates the mass spectrum of the new particles, how this mechanism is communicated to the lower energy regime (the electro-weak breaking scale) becomes of significant importance. As an analogy, in the case of the SM the Higgs vev determines scale of electro-weak breaking, while the specifics of the gauge and Yukawa interactions determine the detailed mass spectrum of the theory. For Susy, the question now is how to parameterize this communication between the “hidden” and “visible” sectors, as this will end up determining the masses found in experiment. 
+
+To illustrate Gauge Mediation, suppose a super field $\psi$ with SM couplings. Adding a term in the superpotential responsible for mediation, coupling $\psi$ to a new singlet superfield $\hat{X}$:
+\begin{equation*}
+    W_M = \lambda \hat{X}  \bar{\psi}\psi 
+\end{equation*}
+Where $\hat{X}$ receives both an A vev and F vev. (This could be a good place to go the details of how they ssb works). Spontaneous symmetry breaking induces masses in the fermion portion of $\psi$, which sets an overall mass scale of the messenger sector:
+
+\begin{equation*}
+    M \equiv = m_{fermion} = X \quad A vev
+\end{equation*}
+
+While the scalar matrix has the form:
+\begin{equation*}
+M_{scalar}^2 = 
+\begin{pmatrix}
+M^2 & \lambda F_x \\
+\lambda F_x & M^2
+\end{pmatrix}
+\quad , \textrm{with eigenvalues} \quad M^2 \pm \lambda F_x
+\end{equation*}
+
+
+Where it is traditional to denote the f vev as $F_X$ and introduce the scale:
+\begin{equation*}
+    \Lambda = \frac{F_X}{M}
+\end{equation*}
+
+Because $\psi$ is charged under the Standard model, the gauginos of the MSSM can recieve mass at 1-loop. There masses are as such are:
+
+\begin{eqnarray}
+M_{a}=N_5 g_a^2 \left ( \frac{1}{(4\pi)^2} \frac{F}{M} \right ),
+\label{MGMgauginos}
+\end{eqnarray}
+Where $N_5$ is the number of messenger pairs, and $g_a$ is the gauge coupling. These are the gauge couplings we motivated in section 1.1 for the $U(1)_Y \otimes SU(2)_L \otimes SU(3)_c$. Below is the feynman diagram that contributes to this term
+\begin{center}
+    \includegraphics[scale=.5]{gaugeFermionDiagram.png}
+\end{center}
+
+The scalars of the MSSM then can interact at 2-loops, giving masses: 
+
+\begin{eqnarray}
+m^2_{\phi} = N_5  \left ( \frac{1}{(4\pi)^2}\frac{F}{M} \right )^2 \left ( g_3^4 C_{3\phi}+g_2^4 C_{2\phi} + g_1^4 C_{1\phi} \right ),
+%m^2_{\tilde{Q}}&=& N_5 2 \left ( \frac{1}{(4\pi)^2}\frac{F}{M} \right )^2 \left (\frac{4}{3} g_3^4+\frac{3}{4} g_2^4+\frac{1}{6} g_1^4 \right ) \nonumber \\
+\label{MGMscalars}
+\end{eqnarray}
+
+where $C_{3\phi} = 4/3$ for squarks and zero for sleptons, $C_{2\phi} = 3/4$ for electroweak doublets and 0 for singlets, and $C_{1\phi} = (3/5) Y_\phi$, where $Y_\phi$ is the hypercharge for the field $\phi$. Below are diagrams associated with scalars and the mediation fields
+
+\begin{center}
+    \includegraphics[scale=.5]{gaugeScalarDiagram.png}
+\end{center}
+
+A great achievement of minimal gauge mediation (MGM), is that the issue of FCNC in the MSSM has been addressed, as the SUSY partners of SM fermions receive the dominant part of their masses via gauge interactions. Unfortunately though, while MGM is a viable model, it has a real world practicality issue, to satisfy the 125 GeV Higgs mass constraint high messenger scales are needed, , leading to extremely high squark and gluino masses that are out of reach at the LHC. A popular approach to extending gauge mediation to avoid this issue is called "flavored gauge mediation", where the Higgs field and the messenger fields mix. This is the framework adopted by our research, and is where we will begin defining our model.
+
+
+
+
+% \clearpage
+% \begin{table}[]
+% \begin{tabular}{c|c}
+%     \centering
+%     \begin{tabular}{c|c}
+%         10 & 10  \\
+%         20 & 20
+%     \end{tabular}
+%     \caption{Caption}
+%     \label{tab:my_label}
+% \end{tabular}
+% \end{table}
+
+
+
+

@@ -1,0 +1,282 @@
+\newcommand{\Lagr}{\mathcal{L}}
+
+
+
+
+\chapter{Creating the Standard Model}
+
+
+
+\section{A Gauge Theory}
+\tab Probably start with a statement about the history of the Standard Model. For now, I am just have the meat and potatoes)
+
+The choice of coordinate system is always an arbitrary choice that is impose on the physical system. As such, there are redundant degrees of freedoms in the parameterization of the Lagrangian. Exploring these redundancies is done by identifying the symmetries of the parameterization. With the Standard Model being a Quantum Field Theory, we start with a simple illustrative example as such:
+
+\begin{equation*}
+    \Lagr = \frac{1}{2}(\partial_{\mu} \Phi)^T \partial^{\mu}\Phi - \frac{1}{2}m^2\Phi^T\Phi
+\end{equation*}
+We can now parameterize gauge transformations as:
+\begin{equation*}
+    \Phi \rightarrow \Phi ' = G\Phi
+\end{equation*}
+
+To explore  symmetries, we hypothesize invariance of the Lagrangian under different types of gauge transformations. To compensate for the redundancy of both local and global coordinate systems, the development Standard Model gauge theory starts with imposing local and global gauge invariance. Defining 
+\begin{equation*}
+    (\partial_{\mu}\Phi) \rightarrow ((\partial_{\mu}\Phi)' = G\partial_{\mu}\Phi
+\end{equation*}
+this characterizes the global symmetry of this particular Lagrangian, and the symmetry group is often called the gauge group. This transformation is $G = e^{i\Theta}$. The Lagrangian in this parameterization is manifestly globally invariant. 
+For a local symmetry the gauge transformation does not come out of the derivative simply, I.e  
+\begin{equation*}
+    \partial_{\mu}(G\Phi) \neq G(\partial_{\mu}\Phi
+\end{equation*}
+
+Here the gauge can be different locally. Meaning that it is a function of spacial domain of the field, making $G = e^{i\Theta(x)}$.Due to the spacial dependence of the gauge transformation, additional terms are picked up by the chain rule when Phi' is differentiated over. To compensate, we define a new derivative, the covariant derivative, so that when the standard derivative of the Lagrangian is replaced with the covariant derivate, the additional terms are neatly cancelled out. This new Lagrangian.
+
+\begin{equation*}
+    \Lagr_{local} = \frac{1}{2}(D_{\mu} \Phi)^T D^{\mu}\Phi - \frac{1}{2}m^2\Phi^T\Phi
+\end{equation*}
+is now locally gauge invariant by construction. To impose this local cancellation, a gauge field $A(x)$ must be introduced.  
+\begin{equation*}
+    D_{\mu} = \partial_{\mu} - i g A_{\mu}
+\end{equation*}
+Where g is a coupling constant that we pull out of the local gauge function $\Theta(x) = g\lambda(x) $. It can be shown that :
+\begin{equation*}
+    {\displaystyle \ A'_{\mu }=GA_{\mu }G^{-1}-{\frac {i}{g}}(\partial _{\mu }G)G^{-1}}
+\end{equation*}
+
+When using the above to solve for $A_{\mu}$, the form of the solution will be based on the gauge group of choice. These must be smooth differentiable Lie groups, where $A_{\mu}$ is an element. 
+
+An interaction term can now be defined as the difference between original globally invariant Lagrangian and the locally invariant one. 
+\begin{equation*}
+    \Lagr_{local} = \Lagr_{global} + \Lagr_{int}
+\end{equation*}
+
+
+\begin{equation*}
+    \Lagr_{int} = i\frac{g}{2}\Phi^T A_{\mu}^T \partial^{\mu}\Phi + i\frac{g}{2}A^{\mu}\Phi - \frac{g^2}{2}(A_{\mu}\Phi)^T A^{\mu}\Phi
+\end{equation*}
+The picture of a classical gauge theory developed in the previous section is almost complete, except for the fact that to define the covariant derivatives D, one needs to know the value of the gauge field A(x) at all space-time points. Instead of manually specifying the values of this field, it can be given as the solution to a field equation. Further requiring that the Lagrangian that generates this field equation is locally gauge invariant as well, one possible form for the gauge field Lagrangian is
+
+\begin{equation*}
+    \Lagr_{gf} = -\frac{1}{2}tr(F^{\mu \nu} F_{\mu \nu}) = -\frac{1}{4}F^{a \mu \nu}F_{\mu \nu}^a with
+\end{equation*}
+\begin{equation*}
+    F_{\mu \nu}^a = \partial_{\mu}A_{\nu}^a - \partial_{\nu}A_{\mu}^a + g \sum_{b,c} f^{abc}A_{\mu}^b A_{\nu}^c
+\end{equation*}
+
+Where f are the structure constants of the Lie algebra of the generators of the gauge group.  By using a Lie algebra, the topology of the local gauge is a smooth differentiable manifold. The particulars of the local gauge hypothesis creates gauge fields, whose structure of the group chosen for the gauge symmetry. 
+
+
+
+The Standard model is based on a SU3xSU2xU1 symmetry. Flowing the ideas explained above, and using these symmetry groups when deriving the rules for the local gauge transformation,we can then define the Lagrangian of the standard model. 
+
+\begin{equation*}
+    \Lagr_{EW} = \sum_{\psi}\bar{\psi}\gamma^{\mu}(i\partial_{\mu} - g'\frac{1}{2}Y_W B_{\mu} - g\frac{1}{2}\overrightarrow{\tau}_L \overrightarrow{W}_{\mu})\psi - \frac{1}{4}W_a^{\mu \nu} W_{\mu \nu}^a -\frac{1}{4}B^{\mu \nu}B_{\mu \nu}
+\end{equation*}
+\begin{equation*}
+    \Lagr_{QCD} = \sum_{\psi}(i\gamma^{\mu}(\partial_{\mu}\del_{ij}-ig_s G_{\mu}^a T_{ij}^a))\psi_j - \frac{1}{4}G_{\mu \nu}^a G_a^{\mu \nu}
+\end{equation*}
+Now define all the terms above
+
+% get ride of this if statement to have the table try to compile, but this breaks the document
+\iffalse
+\begin{table}[]
+    \centering
+    \begin{tabular}{l|c|c|r} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
+      \textbf{ quarks, quarks  } & \textbf{Spin 0} & \textbf{Spin 1/2} & \textbf{SU(3), SU2, U1}\\
+      %$\alpha$ & $\beta$ & $\gamma$ \\
+      \hline
+      Q & (\tilde{u}_L \tilde{d}_L) & (u_L d_L) & (\bold{3},\bold{2},$\frac{1}{6}$)\\
+       \Bar{u} & \tilde{u}_R^* & \dagger{u}_R & (\bold{3},\bold{1},$-\frac{2}{3}$)\\
+       \Bar{d} & \tilde{d}_R^* & \dagger{d}_R & (\bold{3},\bold{1},$\frac{1}{3}$)\\
+    \end{tabular}
+    \begin{tabular}{l|c|c|r} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
+      \textbf{sleptons, leptons} & \textbf{Spin 0} & \textbf{Spin 1/2} & \textbf{SU(3), SU2, U1}\\
+      %$\alpha$ & $\beta$ & $\gamma$ \\
+      \hline
+      L & (\tilde{\nu} \tilde{e}_L) & (\nu e_L) & (\bold{1},\bold{2},$-\frac{1}{2}$)\\
+       \Bar{e} & \tilde{e}_R^* & \dagger{e}_R & (\bold{1},\bold{1},1)\\
+       
+    \end{tabular}
+    \begin{tabular}{l|c|c|r} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
+      \textbf{Higgs, higgsino} & \textbf{Spin 0} & \textbf{Spin 1/2} & \textbf{SU(3), SU2, U1}\\
+      %$\alpha$ & $\beta$ & $\gamma$ \\
+      \hline
+      H_u & (H_{u}^+ H_{u}^0) & (\tilde{H_{u}^+} \tilde{H_{u}^0}) & (\bold{1},\bold{2},$\frac{1}{2}$)\\
+        H_d & (H_{d}^+ H_{d}^0) & (\tilde{H_{d}^+} \tilde{H_{d}^0}) & (\bold{1},\bold{2},$-\frac{1}{2}$)\\
+       
+    \end{tabular}
+    \caption{Caption}
+    \label{tab:my_label}
+\end{table}
+\fi
+\section{Higgs Mechanism and Yukawa Interactions}
+\tab
+A particular analysis made in 2012(?)  by the Large Hadron Collider  marked a gigantic milestone of modern physics: the discovery of the Higgs boson. Called “God Particle” by the general public, this represented a massive success the Standard Model. Possibly it’s title was a bit of a misnomer for what was just a mass generating mechanism for a theoretical physics model that most people knew little about. Perhaps this was a bit of Physicists’ hubris leaking out into the zeitgeist of the public. But this was a clever trick developed by Peter Higgs and others , where he hypothesized the famous “Mexican hat” potential:
+\newline
+\begin{center}
+    \includegraphics[scale=.2]{higgspotential.png}
+\end{center}
+
+To introduce the Higgs to the Standard Model, a new term to the Lagrangian is added with a new scalar field, the Higgs field. 
+
+\begin{equation*}
+    \Lagr_{Higgs} = (D^{\mu}\phi)^{\dagger}(D_{\mu}\phi) - V(\phi)
+\end{equation*}
+Where:
+\begin{equation*}
+    V = - \mu^2 \phi^{\dagger}\phi + \frac{\lambda}{4}(\phi^{\dagger}\phi)^2
+\end{equation*}
+
+\begin{center}
+with $\lambda$ > 0 and $\mu^2$ >0. Here $\phi$ is a SU(2) doublet field.
+\end{center}
+\begin{center}
+    $\phi = 
+    \begin{pmatrix}
+    \phi^+\\
+    \phi^0
+    \end{pmatrix}$
+\end{center}
+\tab
+By the symmetry in our constructed Lagrangian for the non-extended Standard Model, the lowest energy state (the vacuum) for the field is trivially zero. With the Higgs potential, this is no longer the case, as the minimum of the potential is non-zero. When in the energy regime where the Higgs potential becomes dominate, symmetry of the potential spontaneously breaks, and the Higgs Field acquires a vacuum expectation value (vev),   Due to the symmetry of the potential there is an infinite number of degenerate states with minimum energy states satisfying: $\phi^{\dagger}\phi = \nu^2/2$ . We choose arbitrarily:
+\begin{equation*}
+    \langle \phi \rangle = \frac{1}{\sqrt{2}}
+    \begin{pmatrix}
+    0\\
+    \nu
+    \end{pmatrix}
+\end{equation*}
+The neutral component of the doublet is chosen to preserve conservation of charge. Returning the kinetic part of the Higgs Lagrangian using the covariant derivative from above:
+
+\begin{equation*}
+    (D^{\mu}\phi)^{\dagger}(D_{\mu}\phi) = \left\vert 
+    \middle(\partial_{\mu} + \frac{i}{2}g\tau^k W_{\mu}^k + \frac{i}{2}g'B_{\mu})\frac{1}{\sqrt{2}}
+    \begin{pmatrix}
+    0\\
+    v
+    \end{pmatrix}
+    \right\vert^2 
+\end{equation*}
+\begin{equation*}
+    = \frac{\nu^2}{8} \left\vert
+    \middle g\tau^k W_{\mu}^k + g'B_{\mu}
+    \begin{pmatrix}
+    0\\
+    1
+    \end{pmatrix}
+    \right\vert^2 
+
+\end{equation*}
+
+\begin{equation*}
+    = \frac{\nu^2}{8}\left\vert
+    \middle
+    \begin{pmatrix}
+    gW_{\mu}^1-igW_{\mu}^2\\
+    -gW_{\mu}^3+g'B_{\mu}
+    \end{pmatrix}
+    \right\vert^2
+\end{equation*}
+\begin{equation*}
+    = \frac{\nu^2}{8}[g^2]((W_{\mu}^1)^2+(W_{\mu}^2)^2)+(gW_{\mu}^3-g'B_{\mu})^2]
+\end{equation*}
+Let us define:
+\begin{equation*}
+    W_{\mu}^{\pm} \equiv \frac{1}{\sqrt{2}}(W_{\mu}^1 \mp iW_{\mu}^2)
+\end{equation*}
+and
+\begin{equation*}
+    Z_{\mu} \equiv \frac{1}{\sqrt{g^2+g'^2}}(gW_{\mu}^3-g'B_{\mu})
+\end{equation*}
+
+\begin{equation*}
+    A_{\mu} \equiv \frac{1}{\sqrt{g^2+g'^2}}(g'W_{\mu}^3+gB_{\mu})
+\end{equation*}
+
+With this parameterization, we get mass-like terms in the Lagrangian, associated with the square of the newly defined operators above:
+\begin{equation*}
+    m_W = \frac{g\nu}{2},
+    \newline
+    m_Z = \frac{\nu}{2}\sqrt{g^2+g'^2},
+    \newline
+    m_A = 0
+\end{equation*}
+Using the spontaneous symmetry breaking of the Higgs field, mass is given directly to the gauge-bosons we motivated in section 1.1. Returning to the Higgs mass, lets expand the Higgs potential around the vev $\Phi = v +\sigma (x) $. We get additional terms in the potential:
+
+\begin{equation*}
+    V_{additional} = \lambda v^2 \sigma^2 + \lambda(v \sigma^3 +\frac{1}{4}\sigma^4)
+\end{equation*}
+Here this first term is a new mass-like term (giving $M_H^2 = 2 v^2$), and the second are self interaction terms. Now to calculate these new masses explicitly, we must find the vev:
+
+\begin{equation*}
+    \frac{G_f}{\sqrt{2}} = \frac{g^2}{8 M_w^2} = \frac{1}{2 v^2}
+\end{equation*}
+$G_F $ is a well measured result, giving us:
+\begin{equation*}
+    v= (\sqrt{2}G_F)^\frac{1}{2} = 246 GeV
+\end{equation*}
+
+Now we can match the result of $M_H = 125 GeV$ by tuning the hyperparameter $\lambda$ of the Higgs Potential. 
+
+
+
+\section{Generating the mass of the Matter-fields}
+
+Above we saw how the higgs mechanism gives masses to the gauge-bosons directly by the nature of how it spontaneously breaks. To add mass to the fermions, a new term in the Lagrangian introduced. 
+\begin{equation*}
+    \Lagr_{Yuk} = \Gamma_{mn}^{u}\bar{q}_{m,L}\Tilde{\phi}u_{n,R} + \Gamma_{mn}^{d}\bar{q}_{m,L}\phi d_{n,R} + \Gamma_{mn}^{e}\bar{l}_{m,L}\phi e_{n,R} + \Gamma_{mn}^{\nu}\bar{l}_{m,L}\Tilde{\phi}\nu_{n,R} + h.c.
+\end{equation*}
+
+Here $m$ and $n$ are family indicies, $\bar{q}_{m,L}$ is a doublet consisting of $\bar{u}_{m,L}$ and $\bar{d}_{m,L}$ , and $\bar{l}_{m,L}$ is a double consisting of $\bar{e}_{m,L}$ and $\bar{\nu}_{m,L}$. $\Gamma_{mn}^{u}$ are the associated Yukawa coeffients. 
+
+
+
+By introducing the Yukawa Lagrangian, the fermion mass-fields now inherent a vev by being coupled to the Higgs Field. Taking into account that these mass terms should be hyperchargless, two representations of the Higgs field are needed wit $Y = +\frac{1}{2} , y = -\frac{1}{2} $. These will be used to give masses to the up quarks and electrons, and the down quarks and neutrinos respectively
+
+\begin{equation*}
+    \phi = \begin{pmatrix}
+    \phi^+ \\
+    \phi^0
+    \end{pmatrix}
+    \quad \textrm{with}, \quad Y(\phi) = +\frac{1}{2}
+\end{equation*}
+and $\tilde{\phi}_i = \epsilon_{ij} \phi_j^*$;
+
+\begin{equation*}
+    \tilde{\phi} = \begin{pmatrix}
+    \phi^{0*} \\
+    -\phi^-
+    \end{pmatrix}
+    \quad \textrm{with}, \quad Y(\tidle{\phi}) = +\frac{1}{2}
+\end{equation*}
+
+Now all the fermion masses can be generated witha single Higgs-doublet by using both $\phi$ and $\tidle{\phi}$. To illustrate, the Yukawa Lagrangian becomes, with family indices suppressed for simplicity:
+
+\begin{equation*}
+    \Lagr_{Yuk} = f_e\bar{l}_L\phi e_R + f_u\bar{q}_L\tilde{\phi}u_R + f_d\bar{q}_L\phi d_R + h.c
+\end{equation*}
+
+Choosing our vevs as such:
+\begin{equation*}
+    \phi = \frac{1}{\sqrt{2}} \begin{pmatrix}
+    0 \\
+    v 
+    \end{pmatrix},
+    \quad 
+    \tilde{\phi} = \frac{1}{\sqrt{2}}\begin{pmatrix}
+    v \\
+    0 
+    \end{pmatrix}
+\end{equation*}
+
+Now the masses for the fermions are explicitly:
+
+\begin{equation*}
+    m_i = -\frac{f_i \nu}{\sqrt{2}}, i = e, u , d
+\end{equation*}
+
+At this point, it would be instructive to count degrees of freedom. We started with a couplex Higgs doublet with four degrees of freedom, one massless $B$ and 3 massless $W^i$, each with 2 degrees of freedom. This totals to 12. After spontaneous symmetry breaking we have a real scalar Higgs field $h$ and one massless photon with, these having one and two degrees of freedom respectively. Additionally, we have $W^{\pm}$ and $Z$ bosons. These have gained longitudinal components, which they obtained by "eating" the Goldstone bosons. This gives each of them three degrees of freedom. This makes twelve degrees of freedom before and after spontaneous symmetry breaking. 
+
+ Our (relatively) simply assumption of the Standard Model now has another layer of dynamics added to it. Unfortunately, the control of quantum realm is still elusive, and will need to extend the framework of the Standard Model to wrangle it under control. 
+

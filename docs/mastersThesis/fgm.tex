@@ -1,0 +1,161 @@
+\chapter{Flavoured Gauge Mediation}
+\section{The basics}
+By introducing the idea that the Higgs and messenger fields must mix, the flavour-blind aspect of the MGM is sacrificed, but it is now much easier to meet the constraint of the Higgs mass. While the simplest apprach to FGM only introduces one new messenger field, as seen  in (fullLisaBackgroud.pdf), this implementation has a sever b-$\mu$ problem. As such, we will be introducing two messenger fields that are charged under the discrete non-abelian group $S(3)$:
+\begin{eqnarray}
+\mathcal{H}_{u}&\equiv&  \left (\begin{array}{c} (\mathcal{H}^{(2)}_u)_1 \\ (\mathcal{H}^{(2)}_u)_2 \\ \mathcal{H}^{(1)}_u \end{array} \right )  \equiv  \left (\begin{array}{c} \mathcal{H}^{(2)}_{u1}\\ \mathcal{H}^{(2)}_{u2}\\ \mathcal{H}^{(1)}_u\end{array} \right )= \mathcal{R}_u \left (\begin{array}{c} H_u\\M_{u1} \\  M_{u2} \end{array} \right ) \nonumber \\
+\mathcal{H}_{d}&\equiv& \left (\begin{array}{c} (\mathcal{H}^{(2)}_d)_1 \\ (\mathcal{H}^{(2)}_d)_2 \\ \mathcal{H}^{(1)}_d \end{array} \right ) \equiv  \left (\begin{array}{c} \mathcal{H}^{(2)}_{d1}\\ \mathcal{H}^{(2)}_{d2}\\ \mathcal{H}^{(1)}_d\end{array} \right )=\mathcal{R}_d \left (\begin{array}{c} H_d\\M_{d1}  \\ M_{d2} \end{array} \right ),
+\label{higgs_s3}
+\end{eqnarray}
+
+where $H_{u,d}$ are the electroweak Higgs field of the MSSM and $M_{u1,d1}$ and $M_{u2,d2}$ are the gauge mediation double messenger fields with masses $M_{mess}$. In arXiv:1610.0294, it was shows that the unitary matrices $R_{u,d}$ are:
+
+\begin{eqnarray}
+\mathcal{R}_{u,d}= \left ( \begin{array}{ccc} \frac{1}{\sqrt{3}} & \mp \frac{1}{2} \left (1+\frac{1}{\sqrt{3}} \right) & \frac{1}{2} \left (1-\frac{1}{\sqrt{3}} \right) \\  \frac{1}{\sqrt{3}} & \pm \frac{1}{2} \left (1-\frac{1}{\sqrt{3}} \right) & -\frac{1}{2} \left (1+\frac{1}{\sqrt{3}} \right) 
+\\  \frac{1}{\sqrt{3}} &  \pm \frac{1}{\sqrt{3}} &  \frac{1}{\sqrt{3}} \end{array} \right ).
+\label{rotationmatrices}
+\end{eqnarray}
+
+From this, the mixed higgs messenger fields become:
+
+\begin{eqnarray}
+ \left (\begin{array}{c} \mathcal{H}^{(2)}_{u1}\\ \mathcal{H}^{(2)}_{u2}\\ \mathcal{H}^{(1)}_u\end{array} \right )= \left (\begin{array}{c} \frac{1}{\sqrt{3}}H_u -\frac{1}{2} \left (1+\frac{1}{\sqrt{3}}\right )M_{u1}+\frac{1}{2}\left (1-\frac{1}{\sqrt{3}}\right )M_{u2} \\
+\frac{1}{\sqrt{3}}H_u +\frac{1}{2} \left (1-\frac{1}{\sqrt{3}}\right )M_{u1}-\frac{1}{2}\left (1+\frac{1}{\sqrt{3}}\right )M_{u2}\\
+\frac{1}{\sqrt{3}}(H_u+M_{u1}+M_{u2}) \end{array}\right )\nonumber \\
+ \left (\begin{array}{c} \mathcal{H}^{(2)}_{d1}\\ \mathcal{H}^{(2)}_{d2}\\ \mathcal{H}^{(1)}_d\end{array} \right )= \left (\begin{array}{c} \frac{1}{\sqrt{3}}H_d +\frac{1}{2} \left (1+\frac{1}{\sqrt{3}}\right )M_{d1}+\frac{1}{2}\left (1-\frac{1}{\sqrt{3}}\right )M_{d2} \\
+\frac{1}{\sqrt{3}}H_d -\frac{1}{2} \left (1-\frac{1}{\sqrt{3}}\right )M_{d1}-\frac{1}{2}\left (1+\frac{1}{\sqrt{3}}\right )M_{d2}\\
+\frac{1}{\sqrt{3}}(H_d-M_{d1}+M_{d2}) \end{array}\right ).
+\label{decomp}
+\end{eqnarray}
+
+The group theory of $S(3)$ can be found in many references (ref), Here will focus on some key aspects of this group theory. $S(3)$ has three irreducible representations, a singlet \textbf{1}, a one dimentional representation \textbf{1'}, and a doublet \textbf{2}. $S(3)$ has tensor products defined as:
+
+\begin{equation}
+    1 \otimes 2 = 2 \quad 1' \otimes 2 = 2 \quad 2 \otimes 2 = 1 \otimes 1' \otimes 2 
+\end{equation}
+
+In this basis, the singlet representation obtained from the tensor products of two doublets and 3 doublets is:
+
+\begin{equation}
+    (2 \otimes 2)_1 = [
+    \begin{pmatrix}
+    a_1\\
+    a_2
+    \end{pmatrix}
+    \otimes 
+    \begin{pmatrix}
+    b_1\\
+    b_2
+    \end{pmatrix} ]_1 = a_1b_2 + a_2b_1
+\end{equation}
+\begin{equation}
+    (2 \otimes 2 \otimes 2)_1 = [
+    \begin{pmatrix}
+    a_1\\
+    a_2
+    \end{pmatrix}
+    \otimes 
+    \begin{pmatrix}
+    b_1\\
+    b_2
+    \end{pmatrix}
+    \otimes
+    \begin{pmatrix}
+    c_1\\
+    c_2
+    \end{pmatrix} ]_1 = a_1b_1c_1 + a_2b_2c_2
+\end{equation}
+
+For simplicity, we will only considers fields in our model that are either a \textbf{1} or \textbf{2} of $S(3)$. This makes the above relations all that we need to construct $S(3)$ invariants. 
+
+To make use of this discrete non-abelian symmetry when implementing FGM it is assumed that the quarks and leptons of the Standard Model are embbeded into representations of $S(3)$, as in the table below
+
+\begin{center}
+    \includegraphics[scale=.5]{s3charges.png}
+\end{center}
+
+Now using the $S(3)$ charge table above, we are able to construct a generic superpotential , containing couplings of the MSSM matter fields and Higgs-messenger fields. Below the superpotential for up quarks is given for example
+
+\begin{eqnarray}
+W^{(u)}= y_u\big[Q_{\mathbf 2}  \bar u_{\mathbf 2}  \mathcal{H}^{(2)}_u+\beta_{1u}Q_{\mathbf 2}  \bar u_{\mathbf 2} \mathcal{H}^{(1)}_u + \beta_{2u} Q_{\mathbf 2}  \bar u_{\mathbf 1}  \mathcal{H}^{(2)}_u +\beta_{3u} Q_{\mathbf 1}  \bar u_{\mathbf 2}  \mathcal{H}^{(2)}_u+ \beta_{4u} Q_{\mathbf 1}  \bar u_{\mathbf 1}  \mathcal{H}^{(1)}_u\big].
+\label{wu}
+\end{eqnarray}
+
+The parameter $y_u$ is a dimensionless overall scale parameter, and the quantities $\beta_{1u}$, $\beta_{2u}$, $\beta_{3u}$, and $\beta_{4u}$ are dimensionless quantities. Similar superpotentials can be constructed for the down quarks. We will be ignoring the effects of neutrino masses in this work.
+
+For the above example , lets use the basis :
+\begin{eqnarray}
+Q= (Q_\mathbf{2}, Q_\mathbf{1})^T = ((Q_{\mathbf 2})_1, (Q_{\mathbf 2})_2 ,Q_{\mathbf 1})^T, \qquad \overline{u}= (\overline{u}_{\mathbf{2}}, \overline{u}_\mathbf{1})^T= ((\overline{u}_{\mathbf 2})_1, (\overline{u}_\mathbf{2})_2 ,\overline{u}_{\mathbf 1})^T,
+\end{eqnarray}
+
+then the superpotential can be expressed as:
+
+\begin{eqnarray}
+W^{(u)}=y_uQ^T\left( \begin{matrix} \mathcal{H}^{(2)}_{u1}&\beta_{1u}\mathcal{H}^{(1)}_{u}&\beta_{2u} \mathcal{H}^{(2)}_{u2}\\ \beta_{1u} \mathcal{H}^{(1)}_u& \mathcal{H}^{(2)}_{u2}& \beta_{2u}\mathcal{H}^{(2)}_{u1}\\ \beta_{3u}\mathcal{H}^{(2)}_{u2}& \beta_{3u}\mathcal{H}^{(2)}_{u1}&\beta_{4u} \mathcal{H}^{(1)}_u\end{matrix}\right)\bar u. \label{UpYukawas}
+\end{eqnarray}
+
+Using equation 3, we can construct the superponetial in this basis and separate it into MSSM Yukawa coupling $Y_u$ and the messenger Yukawa couplings $Y_{u1}'$ and $Y_{u2}'$ as follows:
+\begin{eqnarray}
+W^{(u)} = Q^T Y_u \overline{u} H_u + Q^T Y_{u1}' \overline{u} M_{u1}+  Q^T Y_{u2}' \overline{u} M_{u2}.
+\end{eqnarray}
+
+Using the convention $i = u,d$ for the up and down sectors, we can construct the standard Yukawa and messenger Yukawa:
+
+\begin{equation}
+Y_i =  \frac{y_{i}}{\sqrt{3}} \left (\begin{array}{ccc} 1 & \beta_{1i} & \beta_{2i} \\ \beta_{1i} & 1 & \beta_{2i} \\ \beta_{3i} & \beta_{3i} & \beta_{4i}           \end{array} \right ),
+\label{eq:yud}
+\end{equation}
+\begin{equation}
+Y^\prime_{i1}=y_{i} \left (\begin{array}{ccc} -\frac{1}{2}-\frac{1}{2\sqrt{3}} & \frac{\beta_{1i}}{\sqrt{3}} & \;\; \frac{\beta_{2i}}{2} - \frac{\beta_{2i}}{2\sqrt{3}} \\  \frac{\beta_{1i}}{\sqrt{3}} & \;\; \frac{1}{2}-\frac{1}{2\sqrt{3}} & -\frac{\beta_{2i}}{2} - \frac{\beta_{2i}}{2\sqrt{3}} \\ \;\; \frac{\beta_{3i}}{2} - \frac{\beta_{3i}}{2\sqrt{3}} & -\frac{\beta_{3i}}{2} - \frac{\beta_{3i}}{2\sqrt{3}} & \frac{\beta_{4i}
+}{\sqrt{3}}
+\end{array} \right )
+\end{equation}
+\begin{equation}
+\;\; Y^\prime_{i2}=y_{i} \left (\begin{array}{ccc} \;\; \frac{1}{2}-\frac{1}{2\sqrt{3}} & \frac{\beta_{1i}}{\sqrt{3}} &  -\frac{\beta_{2i}}{2} - \frac{\beta_{2i}}{2\sqrt{3}} \\  \frac{\beta_{1i}}{\sqrt{3}} & -\frac{1}{2}-\frac{1}{2\sqrt{3}} & \;\; \frac{\beta_{2i}}{2} - \frac{\beta_{2i}}{2\sqrt{3}} \\ -\frac{\beta_{3i}}{2} - \frac{\beta_{3i}}{2\sqrt{3}} & \;\; \frac{\beta_{3i}}{2} - \frac{\beta_{3i}}{2\sqrt{3}} & \frac{\beta_{4i}
+}{\sqrt{3}}
+\end{array} \right ).
+\end{equation}
+
+The $\beta's$ will be considered to be real, but otherwise arbitrary. For the following discussion we will supress the $i$ indices. The biunitary transformation of the Yukawa matrix that diagonalizes is as follows:
+\begin{equation}
+U_{iL}^\dagger Y_i U_{iR} =Y_i^{(\text{diag})},  
+\end{equation}
+in which
+\begin{equation}
+U_{iL}^\dagger Y_i Y_i^\dagger U_{iL}= (Y_iY_i^\dagger)_\text{diag} =(Y_i^{(\text{diag})})^2, \qquad U_{iR}^\dagger Y_i^\dagger Y_i U_{iR}= (Y_i^\dagger Y_i)_\text{diag}= (Y_i^{(\text{diag})})^2.
+\end{equation}
+
+The eigen values for the Yukawa matrix can be easily found. From the structure of the matrix there is clearly one of the eigen values are:
+\begin{equation}
+\lambda_1=\frac{y_{i}^2}{3}(-1+\beta_1)^2, 
+\label{eq:evalsq1}
+\end{equation}
+with corresponding normalized eigenvector 
+\begin{equation}
+v_1=\frac{1}{\sqrt{2}}(1,-1,0).  
+\end{equation}
+The other eigenvalues are given by
+\begin{equation}
+\lambda_{2,3}= \frac{y_{i}^2}{6} \left ((1+\beta_1)^2+2(\beta_2^2+\beta_3^2)+ \beta_4^2 \mp \sqrt{\Lambda} \right ),
+\label{eq:evalsqmp}
+\end{equation}
+in which $\Lambda$ is given by
+\begin{equation}
+\Lambda = (1+\beta_1)^4+4(\beta_2^4+\beta_3^4)+\beta_4^4+4((1+\beta_1)^2+\beta_4^2)(\beta_2^2+\beta_3^2)-2(1+\beta_1)^2\beta_4^2-8\beta_2^2\beta_3^2+16(1+\beta_1)\beta_2\beta_3 \beta_4.
+\label{eq:Lambdadef}
+\end{equation}
+Note the $\beta_2\leftrightarrow \beta_3$ symmetry of Eqs.~(\ref{eq:evalsqmp})-(\ref{eq:Lambdadef}).
+
+\section{Model creation}
+An important motivation of our FGM model building is to construct hierarchical mass values, as natural provides a clear hierarchy between the families of the Standard Model. From our perspective, that entails creating hierarchical eigenvalues of the Yukawa matrix. We will be considering two models that satisfy these conditions.
+
+Looking at the form of Eq.~(\ref{eq:evalsq1}) and Eq.~(\ref{eq:evalsqmp}), it is clear that there are two general possiblities to create a hierarchy of eigenvalues. The first is the $\lambda_1$ is one of the small eigenvalues, making $\beta_1\rightarrow 1$, while $\lambda_2$ is the other. Hence $\lambda_3$ is the higher eigenvalue, which generically has a value of $O(1)$. The second possibility is that $\lambda_1$ is the large eigenvalue, making $\beta_1$ noticeably different than 1, and $\lambda_{2,3}$ are the smaller eigenvalues. 
+
+\subsection{Case 1: $\lambda_{1,2}\ll \lambda_3$.}
+These cases I will fill in later, as mostly I am just borrowing the results from the paper and your notes to describe this one. 
+
+\subsection{Case 2: $\lambda_{2,3}\ll \lambda_1$}
+To make $\lambda_{2,3}\ll \lambda_1$, clearly $Beta_1 \neq 1$. We also see from the form of Eqs.~(\ref{eq:evalsqmp})-(\ref{eq:Lambdadef}) that this case would require $\beta_1\rightarrow -1$ and $\beta_{i=2,3,4}\ll 1$, as well as $\Lambda \rightarrow 0$.  Indeed, it is straightforward to see that $\lambda_{2,3}=0$ is achieved for $\beta_1=-1,\beta_2=\beta_3=\beta_4=0$. 
+
+
+
+
